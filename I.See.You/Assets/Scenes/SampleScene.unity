@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 142742860}
   - component: {fileID: 142742859}
   - component: {fileID: 142742858}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gaurd (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +425,8 @@ GameObject:
   - component: {fileID: 165470022}
   - component: {fileID: 165470021}
   - component: {fileID: 165470020}
-  m_Layer: 0
+  - component: {fileID: 165470026}
+  m_Layer: 2
   m_Name: Gaurd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,6 +448,7 @@ MonoBehaviour:
   Gaurd: {fileID: 165470021}
   Player: {fileID: 1918909715}
   Chara: {fileID: 0}
+  Triggered: 0
 --- !u!195 &165470021
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -457,11 +459,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.50000006
-  m_Speed: 3.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2.5
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -540,13 +542,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165470019}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -5.58, y: 3.09, z: -2.46}
+  m_LocalPosition: {x: -4.03, y: 3.09, z: -2.46}
   m_LocalScale: {x: 0.6908254, y: 0.7743602, z: 0.7125629}
   m_Children:
   - {fileID: 142742857}
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &165470026
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165470019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 1, z: 7}
+  m_Center: {x: 0, y: 0, z: 4}
 --- !u!1 &375913344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,7 +1735,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1801818986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.84, y: 2.44, z: -2.55}
+  m_LocalPosition: {x: 1.84, y: 4.62, z: -2.55}
   m_LocalScale: {x: 1.676352, y: 5.185789, z: 11.711984}
   m_Children: []
   m_Father: {fileID: 0}

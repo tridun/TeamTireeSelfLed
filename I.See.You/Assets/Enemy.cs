@@ -8,40 +8,54 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent Gaurd;
     public Transform Player;
     public GameObject Chara;
-    RaycastHit hit;
+    public bool Triggered = false;
+    RaycastHit HitData;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Sets a Game Object to the Player Character.
         Chara = GameObject.FindGameObjectWithTag("Player");
-        //"Player";
-
-        
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        
-
-
-        //Debug.DrawRay(transform.position, transform.forward *10, Color.yellow);
-
-
-
-        if (Physics.Raycast(transform.position, transform.forward, out hit,  10))
+        if (Triggered == true)
         {
-            if (hit.transform.gameObject.CompareTag("Player"))
+            //Casts a Raycast to see if the player is in sight.
+            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10);
+
+            //Checks what tag the collided object is.
+            string tag = HitData.collider.tag;
+
+            //If the tag is "Player", begins to chase.
+            if (tag == "Player")
             {
-                Debug.DrawLine(transform.position, fwd, Color.yellow);
-                Debug.Log("There is something in front of the object!");
                 Gaurd.SetDestination(Player.position);
             }
         }
+    }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        //If Player enters trigger box, activate.
+        if (other.gameObject.tag == "Player")
+        {
+            Triggered = true;
+        }
+        
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        //If Player leaves trigger box, deactivate.
+        if (other.gameObject.tag == "Player")
+        {
+            Triggered = false;
+        }
+        
     }
 }
