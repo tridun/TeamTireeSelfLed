@@ -5,10 +5,11 @@ using UnityEngine.AI;
 using System;
 public class Enemy : MonoBehaviour
 {
-    public NavMeshAgent Gaurd;
-    public Transform Player;
-    public GameObject Chara;
-    public bool Triggered = false;
+    public NavMeshAgent Gaurd;      //Reference to the NavMesh used for the enemy movement.
+    public Transform Player;        //Reference to the player's location.
+    public GameObject Chara;        //Reference to the player.
+    public bool Triggered = false;  //Reference to if an object enters the sight of the enemy. Public as it will be used by other scripts.
+    public float AttackRange = 1f;  //Reference to the attack range. Public for designing and tersting the range.
     RaycastHit HitData;
 
     // Start is called before the first frame update
@@ -30,10 +31,20 @@ public class Enemy : MonoBehaviour
             //Checks what tag the collided object is.
             string tag = HitData.collider.tag;
 
+            //Checks the distacne between the enemy and the player
+            float HitDis = HitData.distance;
+
             //If the tag is "Player", begins to chase.
             if (tag == "Player")
             {
                 Gaurd.SetDestination(Player.position);
+            }
+
+
+            //If the player is in range, this is the attack logic.
+            if (HitDis <= AttackRange)
+            {
+                Debug.Log("Hit");
             }
         }
     }
