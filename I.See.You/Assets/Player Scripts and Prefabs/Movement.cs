@@ -7,26 +7,29 @@ public class Movement : MonoBehaviour
     private CharacterController Control;
     private Vector3 PlayerVelocity;
     private bool GroundedPlayer;
-    public float PlayerSpeed = 2.0f;
+    private float PlayerSpeed = 2.0f;
+    public float Walking = 2f;
+    public float Running = 4f;
 
     // Start is called before the first frame update
     void Start()
     {
         Control = gameObject.AddComponent<CharacterController>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetKey("left shift"))
         {
-            PlayerSpeed = 4f;
+            PlayerSpeed = Running;
             //Control.transform.rotation = Quaternion.Slerp(Control.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
             //Control.transform.Rotate(0, 90, 0);
         }
         else
         {
-            PlayerSpeed = 2f;
+            PlayerSpeed = Walking;
         }
 
 

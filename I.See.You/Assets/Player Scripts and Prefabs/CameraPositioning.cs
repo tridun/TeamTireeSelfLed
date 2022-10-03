@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class CameraPositioning : MonoBehaviour
 {
-    // Start is called before the first frame update
-    //public float zAxisChange;
-    //public float yAxisChange;
-    //public GameObject PlayerCamera;
+    private bool Triggered = false;
+    public float ChangeTime = 1f;
 
     Animator Anim;
 
@@ -20,15 +18,34 @@ public class CameraPositioning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && Triggered == false)
         {
-            Anim.SetTrigger("Active");
+            StartCoroutine(Set1());
         }
 
         new WaitForSeconds(3);
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Triggered == false)
         {
-            Anim.SetTrigger("Back");
+            StartCoroutine(Set2());
         }
     }
+
+    IEnumerator Set1()
+    {
+        Anim.SetTrigger("Active");
+        //Checks if the routine has been triggered, stops repeated input.
+        Triggered = true;
+        yield return new WaitForSeconds(ChangeTime);
+        Triggered = false;
+    }
+
+    IEnumerator Set2()
+    {
+        Anim.SetTrigger("Back");
+        //Checks if the routine has been triggered, stops repeated input.
+        Triggered = true;
+        yield return new WaitForSeconds(ChangeTime);
+        Triggered = false;
+    }
+
 }
