@@ -8,7 +8,6 @@ public class Movement : MonoBehaviour
     private Vector3 PlayerVelocity;
     private bool GroundedPlayer;
     public float PlayerSpeed = 2.0f;
-    private float GravityValue = -9.81f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,10 +20,14 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            PlayerSpeed = 4f;
             //Control.transform.rotation = Quaternion.Slerp(Control.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
             //Control.transform.Rotate(0, 90, 0);
         }
-
+        else
+        {
+            PlayerSpeed = 2f;
+        }
 
 
         GroundedPlayer = Control.isGrounded;
