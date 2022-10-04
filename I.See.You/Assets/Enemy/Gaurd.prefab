@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gaurd: {fileID: 8206353898292734669}
-  Player: {fileID: 0}
-  Chara: {fileID: 0}
+  Player: {fileID: 7376662902581182006, guid: edc04a586f1c4f945b32e40318ecab28, type: 3}
+  Chara: {fileID: 7376662902581182013, guid: edc04a586f1c4f945b32e40318ecab28, type: 3}
   Triggered: 0
   AttackRange: 1
 --- !u!65 &8206353898292734658
