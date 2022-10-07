@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
-public class Enemy : MonoBehaviour
+
+public class EyeLogic : MonoBehaviour
 {
-    private NavMeshAgent Guard;      //Reference to the NavMesh used for the enemy movement.
     private Transform Player;        //Reference to the player's location.
     private GameObject Chara;        //Reference to the player.
+    private GameObject[] Guard;
     public bool Triggered = false;  //Reference to if an object enters the sight of the enemy. Public as it will be used by other scripts.
-    public bool EyeTrig = false;
-    public float AttackRange = 1f;  //Reference to the attack range. Public for designing and tersting the range.
+    public Enemy EyeTrig;
     RaycastHit HitData;
 
     // Start is called before the first frame update
@@ -19,7 +19,8 @@ public class Enemy : MonoBehaviour
         //Sets a Game Object to the Player Character.
         Chara = GameObject.FindGameObjectWithTag("Player");
         Player = Chara.transform;
-        Guard = GetComponent<NavMeshAgent>();
+        Guard = GameObject.FindGameObjectsWithTag("Enemy");
+
     }
 
 
@@ -29,31 +30,36 @@ public class Enemy : MonoBehaviour
         if (Triggered == true)
         {
             //Casts a Raycast to see if the player is in sight.
-            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10);
-
+            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 20);
+            Debug.DrawRay(transform.position, Chara.transform.position - transform.position);
             //Checks what tag the collided object is.
             string tag = HitData.collider.tag;
 
             //Checks the distacne between the enemy and the player
             float HitDis = HitData.distance;
 
+            Debug.Log(tag);
+
             //If the tag is "Player", begins to chase.
             if (tag == "Player")
             {
-                Guard.SetDestination(Player.position);
+                foreach (var I in Guard)
+                {
+                    EyeTrig = I.GetComponent<Enemy>();
+
+                    EyeTrig.EyeTrig = true;
+                }
             }
 
-
-            //If the player is in range, this is the attack logic.
-            if (HitDis <= AttackRange)
-            {
-                Debug.Log("Hit");
-            }
         }
-
-        if (EyeTrig == true)
+        else
         {
-            Guard.SetDestination(Player.position);
+            foreach (var I in Guard)
+            {
+                EyeTrig = I.GetComponent<Enemy>();
+
+                EyeTrig.EyeTrig = false;
+            }
         }
     }
 
@@ -65,7 +71,7 @@ public class Enemy : MonoBehaviour
         {
             Triggered = true;
         }
-        
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -75,6 +81,6 @@ public class Enemy : MonoBehaviour
         {
             Triggered = false;
         }
-        
+
     }
 }
