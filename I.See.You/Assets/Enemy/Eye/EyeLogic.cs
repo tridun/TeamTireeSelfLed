@@ -66,6 +66,7 @@ public class EyeLogic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("In");
         //If Player enters trigger box, activate.
         if (other.gameObject.tag == "Player")
         {
