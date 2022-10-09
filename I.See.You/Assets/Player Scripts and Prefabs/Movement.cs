@@ -4,59 +4,34 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private CharacterController Control;
-    private Vector3 PlayerVelocity;
-    private bool GroundedPlayer;
-    private float PlayerSpeed = 2.0f;
-    public float Walking = 2f;
-    public float Running = 4f;
+    private CharacterController Control;    //References the player character
+    private float PlayerSpeed;              //Speed of the player
+    public float Walking = 2f;              //Walking Speed
+    public float Running = 4f;              //Running Speed
 
     // Start is called before the first frame update
     void Start()
     {
+        //Sets player controller.
         Control = gameObject.AddComponent<CharacterController>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Determines of the player is running or not.
         if (Input.GetKey("left shift"))
         {
             PlayerSpeed = Running;
-            //Control.transform.rotation = Quaternion.Slerp(Control.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
-            //Control.transform.Rotate(0, 90, 0);
         }
         else
         {
             PlayerSpeed = Walking;
         }
 
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //Gets movement input.
+        move = Vector3.ClampMagnitude(move, 1); //Sets the movement speed to be the same no matter the direction.
 
-        GroundedPlayer = Control.isGrounded;
-        if (GroundedPlayer && PlayerVelocity.y < 0)
-        {
-            PlayerVelocity.y = 0f;
-        }
-
-        Transform CamTran = Camera.main.transform;
-
-        //Vector3 CamPos = new Vector3(CamTran.position.x, transform.position.y, CamTran.position.z);
-        //Vector3 Direction = (transform.position - CamPos).normalized;
-
-        //Vector3 ForMove = Direction * Input.GetAxis("Vertical");
-        //Vector3 HorMove = CamTran.right * Input.GetAxis("Horizontal");
-
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        move = Vector3.ClampMagnitude(move, 1);
-
-        //Vector3 Move2 = Vector3.ClampMagnitude(ForMove + HorMove, 1);
-
-        //transform.Translate(Move2 * PlayerSpeed * Time.deltaTime, Space.World);
-
-        Control.Move(move * Time.deltaTime * PlayerSpeed);
-
-        //PlayerVelocity.y += GravityValue * Time.deltaTime;
-        //Control.Move(PlayerVelocity * Time.deltaTime);
+        Control.Move(move * Time.deltaTime * PlayerSpeed); //The movement speed of the player
     }
 }

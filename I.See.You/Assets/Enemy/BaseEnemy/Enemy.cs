@@ -5,13 +5,13 @@ using UnityEngine.AI;
 using System;
 public class Enemy : MonoBehaviour
 {
-    private NavMeshAgent Guard;      //Reference to the NavMesh used for the enemy movement.
-    private Transform Player;        //Reference to the player's location.
-    private GameObject Chara;        //Reference to the player.
+    private NavMeshAgent Guard;     //Reference to the NavMesh used for the enemy movement.
+    private Transform Player;       //Reference to the player's location.
+    private GameObject Chara;       //Reference to the player.
     public bool Triggered = false;  //Reference to if an object enters the sight of the enemy. Public as it will be used by other scripts.
-    public bool EyeTrig = false;
+    public bool EyeTrig = false;    //Reference for the Eye AI. If the Eye sees the player, this is called.
     public float AttackRange = 1f;  //Reference to the attack range. Public for designing and tersting the range.
-    RaycastHit HitData;
+    RaycastHit HitData;             //Reference Data from where the Raycast hits
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +51,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        //This is affected by another script. If the eye sees the player, the bool is true. When it doesn't, the bool is false.
         if (EyeTrig == true)
         {
             Guard.SetDestination(Player.position);

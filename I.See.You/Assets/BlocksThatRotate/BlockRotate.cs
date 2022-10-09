@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BlockRotate : MonoBehaviour    
 {
-    public GameObject Block;
-    private bool Triggered = false;
-    public float RotateTime = 0.5f;
+    public GameObject Block;            //References the block in question
+    private bool Triggered = false;     //Controls the input.
+    public float RotateTime = 0.5f;     //Controls time between inputs.
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +36,10 @@ public class BlockRotate : MonoBehaviour
 
     IEnumerator LeftRotate()
     {
-        //Below is an alternative way to rotate the block.
+        ////Below is an alternative way to rotate the block.
         //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime);
 
-        //Below is a shap rotation of the block.
-        Block.transform.Rotate(0, -90, 0);
+        Block.transform.Rotate(0, -90, 0); //A shap rotation of the block.
 
         //Checks if the routine has been triggered, stops repeated input.
         Triggered = true;
@@ -50,11 +49,10 @@ public class BlockRotate : MonoBehaviour
 
     IEnumerator RightRotate()
     {
-        //Below is an alternative way to rotate the block.
+        ////Below is an alternative way to rotate the block.
         //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
 
-        //Below is a shap rotation of the block.
-        Block.transform.Rotate(0, 90, 0);
+        Block.transform.Rotate(0, 90, 0); //A shap rotation of the block.
 
         //Checks if the routine has been triggered, stops repeated input.
         Triggered = true;

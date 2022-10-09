@@ -6,19 +6,17 @@ using System;
 
 public class EyeLogic : MonoBehaviour
 {
-    private Transform Player;        //Reference to the player's location.
-    private GameObject Chara;        //Reference to the player.
-    private GameObject[] Guard;
-    public bool Triggered = false;  //Reference to if an object enters the sight of the enemy. Public as it will be used by other scripts.
-    public Enemy EyeTrig;
-    RaycastHit HitData;
+    private GameObject Chara;       //Reference to the player.
+    private GameObject[] Guard;     //Array for the guard assets
+    public bool Triggered = false;  //Reference to if an object enters the sight of the enemy.
+    public Enemy EyeTrig;           //Sets if the player is in sight or not to the eye.
+    RaycastHit HitData;             //Reference Data from where the Raycast hits.
 
     // Start is called before the first frame update
     void Start()
     {
-        //Sets a Game Object to the Player Character.
+        //Sets a Game Object to the Player Character and adds to guard array.
         Chara = GameObject.FindGameObjectWithTag("Player");
-        Player = Chara.transform;
         Guard = GameObject.FindGameObjectsWithTag("Enemy");
 
     }
@@ -32,13 +30,12 @@ public class EyeLogic : MonoBehaviour
             //Casts a Raycast to see if the player is in sight.
             Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 20);
             Debug.DrawRay(transform.position, Chara.transform.position - transform.position);
+
             //Checks what tag the collided object is.
             string tag = HitData.collider.tag;
 
-            //Checks the distacne between the enemy and the player
+            //Checks the distance between the enemy and the player
             float HitDis = HitData.distance;
-
-            Debug.Log(tag);
 
             //If the tag is "Player", begins to chase.
             if (tag == "Player")
@@ -50,9 +47,17 @@ public class EyeLogic : MonoBehaviour
                     EyeTrig.EyeTrig = true;
                 }
             }
+            else //Ensures guards don't follow the player's location when not in sight.
+            {
+                foreach (var I in Guard)
+                {
+                    EyeTrig = I.GetComponent<Enemy>();
 
+                    EyeTrig.EyeTrig = false;
+                }
+            }
         }
-        else
+        else //Ensures guards don't follow the player's location when not in sight.
         {
             foreach (var I in Guard)
             {
@@ -66,7 +71,6 @@ public class EyeLogic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("In");
         //If Player enters trigger box, activate.
         if (other.gameObject.tag == "Player")
         {
