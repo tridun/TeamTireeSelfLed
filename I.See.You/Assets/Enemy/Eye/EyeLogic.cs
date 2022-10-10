@@ -9,6 +9,7 @@ public class EyeLogic : MonoBehaviour
     private GameObject Chara;       //Reference to the player.
     private GameObject[] Guard;     //Array for the guard assets
     public bool Triggered = false;  //Reference to if an object enters the sight of the enemy.
+    public bool PlayerSeen = false;
     public Enemy EyeTrig;           //Sets if the player is in sight or not to the eye.
     RaycastHit HitData;             //Reference Data from where the Raycast hits.
 
@@ -40,6 +41,7 @@ public class EyeLogic : MonoBehaviour
             //If the tag is "Player", begins to chase.
             if (tag == "Player")
             {
+                PlayerSeen = true; //For Another Script's Logic. True if the player is in sight of the eye.
                 foreach (var I in Guard)
                 {
                     EyeTrig = I.GetComponent<Enemy>();
@@ -49,6 +51,7 @@ public class EyeLogic : MonoBehaviour
             }
             else //Ensures guards don't follow the player's location when not in sight.
             {
+                PlayerSeen = false; //For Another Script's Logic
                 foreach (var I in Guard)
                 {
                     EyeTrig = I.GetComponent<Enemy>();
@@ -59,6 +62,7 @@ public class EyeLogic : MonoBehaviour
         }
         else //Ensures guards don't follow the player's location when not in sight.
         {
+            PlayerSeen = false;
             foreach (var I in Guard)
             {
                 EyeTrig = I.GetComponent<Enemy>();
