@@ -8,12 +8,16 @@ public class Movement : MonoBehaviour
     private float PlayerSpeed;              //Speed of the player
     public float Walking = 2f;              //Walking Speed
     public float Running = 4f;              //Running Speed
+    public Material[] EnemyChange;
+    private GameObject[] Guard;     //Array for the guard assets
+    private MeshRenderer Meshs;
 
     // Start is called before the first frame update
     void Start()
     {
         //Sets player controller.
         Control = gameObject.AddComponent<CharacterController>();
+        Guard = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     // Update is called once per frame
@@ -28,6 +32,26 @@ public class Movement : MonoBehaviour
         {
             PlayerSpeed = Walking;
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            foreach (var I in Guard)
+            {
+                Meshs = I.GetComponent<MeshRenderer>();
+                Meshs.material = EnemyChange[1];
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            foreach (var I in Guard)
+            {
+                Meshs = I.GetComponent<MeshRenderer>();
+                Meshs.material = EnemyChange[0];
+            }
+        }
+
+
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //Gets movement input.
         move = Vector3.ClampMagnitude(move, 1); //Sets the movement speed to be the same no matter the direction.

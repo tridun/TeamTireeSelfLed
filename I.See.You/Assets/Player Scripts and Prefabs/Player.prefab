@@ -127,7 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b0bd1b9232eb204c8be4f98909d97de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: 2
+  Walking: 2
+  Running: 4
+  EnemyChange:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 957273e55445f2e48914809e8ebfdb5d, type: 2}
 --- !u!1 &7376662903020087083
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,3 +248,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17dcc8c1fc70894498e1db0a1da69367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeTime: 1
