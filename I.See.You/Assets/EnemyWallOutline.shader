@@ -7,6 +7,7 @@ Shader "Unlit/EnemyWallOutline"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _AltTex("Texture", 2D) = "white" {}
         [Space(10)]
         _OutColor ("Outline Colour", Color) = (1, 1, 1, 1)
         _OutValue ("Outline Value", Range(0.0, 0.2)) = 0.1
@@ -14,7 +15,7 @@ Shader "Unlit/EnemyWallOutline"
     }
     SubShader
     {
-        //Pass for Outline
+        /*Pass for Outline*/
         Pass
         {
             Tags
@@ -60,6 +61,8 @@ Shader "Unlit/EnemyWallOutline"
                     return mul(Scale, VertexPos);
             }
 
+
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -81,6 +84,9 @@ Shader "Unlit/EnemyWallOutline"
                 Lighting Off
                 //Color[_OutColor]
         }
+
+
+
         //    //Pass for Outline Middle
         //Pass
         //{
@@ -141,7 +147,55 @@ Shader "Unlit/EnemyWallOutline"
         //        SetTexture[_MainTex]{ combine texture }
         //            }
 
+                    //Pass for Texture
+        //Pass
+        //{
+        //        Tags
+        //        {
+        //            "Queue" = "Transparent + 1"
+        //        }
 
+
+
+        //    CGPROGRAM
+        //    #pragma vertex vert
+        //    #pragma fragment frag
+        //    #include "UnityCG.cginc"
+
+        //    struct appdata
+        //    {
+        //        float4 vertex : POSITION;
+        //        float2 uv : TEXCOORD0;
+        //    };
+
+        //    struct v2f
+        //    {
+        //        float2 uv : TEXCOORD0;
+        //        float4 vertex : SV_POSITION;
+        //    };
+
+        //    sampler2D _AltTex;
+        //    float4 _AltTex_ST;
+
+        //    v2f vert(appdata v)
+        //    {
+        //        v2f o;
+        //        o.vertex = UnityObjectToClipPos(v.vertex);
+        //        o.uv = TRANSFORM_TEX(v.uv, _AltTex);
+        //        return o;
+        //    }
+
+        //    fixed4 frag(v2f i) : SV_Target
+        //    {
+        //        // sample the texture
+        //        fixed4 col = tex2D(_AltTex, i.uv);
+        //        return col;
+        //    }
+        //    ENDCG
+        //        Blend SrcAlpha OneMinusSrcAlpha
+        //        ZTest Greater
+        //        //SetTexture [_MainTex] {combine texture}
+        //}
             //Pass for Texture
         Pass
         {
