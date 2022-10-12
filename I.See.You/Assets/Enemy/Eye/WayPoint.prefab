@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 661677196833728947}
   - component: {fileID: 661677196833728948}
   - component: {fileID: 661677196833728949}
+  - component: {fileID: 7813182002417479971}
   m_Layer: 0
   m_Name: WayPoint
   m_TagString: Waypoint
@@ -96,3 +97,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7813182002417479971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661677196833728950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91c4c43ac8b15143ab196cb68bd84ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotLeft: 0
+  RotRight: 0
