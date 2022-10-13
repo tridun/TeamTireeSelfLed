@@ -15,75 +15,75 @@ Shader "Unlit/EnemyWallOutline"
     }
     SubShader
     {
-        ///*Pass for Outline*/
-        //Pass
-        //{
-        //    Tags
-        //    {
-        //        "Queue" = "Transparent"
-        //    }
+        /*Pass for Outline*/
+        Pass
+        {
+            Tags
+            {
+                "Queue" = "Transparent"
+            }
 
-        //    Blend SrcAlpha OneMinusSrcAlpha
-        //    ZWrite Off
-        //    
+            Blend SrcAlpha OneMinusSrcAlpha
+            ZWrite Off
+            
 
-        //    CGPROGRAM
-        //    #pragma vertex vert
-        //    #pragma fragment frag
-        //    #include "UnityCG.cginc"
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "UnityCG.cginc"
 
-        //    struct appdata
-        //    {
-        //        float4 vertex : POSITION;
-        //        float2 uv : TEXCOORD0;
-        //    };
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
 
-        //    struct v2f
-        //    {
-        //        float2 uv : TEXCOORD0;
-        //        float4 vertex : SV_POSITION;
-        //    };
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+            };
 
-        //    sampler2D _MainTex;
-        //    float4 _MainTex_ST;
-        //    float4 _OutColor;
-        //    float _OutValue;
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
+            float4 _OutColor;
+            float _OutValue;
 
-        //    float4 outline(float4 VertexPos, float outValue) 
-        //    {
-        //        float4x4 Scale = float4x4
-        //            (
-        //                1 + outValue, 0, 0, 0,
-        //                0, 1 + outValue, 0, 0,
-        //                0, 0, 1 + outValue, 0,
-        //                0, 0, 0, 1 + outValue
-        //                );
-        //            return mul(Scale, VertexPos);
-        //    }
+            float4 outline(float4 VertexPos, float outValue) 
+            {
+                float4x4 Scale = float4x4
+                    (
+                        1 + outValue, 0, 0, 0,
+                        0, 1 + outValue, 0, 0,
+                        0, 0, 1 + outValue, 0,
+                        0, 0, 0, 1 + outValue
+                        );
+                    return mul(Scale, VertexPos);
+            }
 
 
 
-        //    v2f vert (appdata v)
-        //    {
-        //        v2f o;
-        //        float4 VertexPos = outline(v.vertex, _OutValue);
-        //        o.vertex = UnityObjectToClipPos(VertexPos);
-        //        o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-        //        return o;
-        //    }
+            v2f vert (appdata v)
+            {
+                v2f o;
+                float4 VertexPos = outline(v.vertex, _OutValue);
+                o.vertex = UnityObjectToClipPos(VertexPos);
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                return o;
+            }
 
-        //    fixed4 frag (v2f i) : SV_Target
-        //    {
-        //        // sample the texture
-        //        fixed4 col = tex2D(_MainTex, i.uv);
-        //        return float4(_OutColor.r, _OutColor.g, _OutColor.b, col.a);
-        //    }
-        //        
-        //        ENDCG
-        //        ZTest Greater
-        //        Lighting Off
-        //        //Color[_OutColor]
-        //}
+            fixed4 frag (v2f i) : SV_Target
+            {
+                // sample the texture
+                fixed4 col = tex2D(_MainTex, i.uv);
+                return float4(_OutColor.r, _OutColor.g, _OutColor.b, col.a);
+            }
+                
+                ENDCG
+                ZTest Greater
+                Lighting Off
+                //Color[_OutColor]
+        }
 
 
 
