@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraPositioning : MonoBehaviour
 {
     private bool Triggered = false;     //Allows for control on when the camera moves, as tro not allow for issues.
-    public float ChangeTime = 1f;       //Sets Time between activation of camera change
+    public float ChangeTime = 0.1f;       //Sets Time between activation of camera change
 
     Animator Anim;                      //Sets Animation Variable
 
@@ -17,6 +17,12 @@ public class CameraPositioning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Sets camera into position 2 when the number 2 is pressed. Not on the NumPad.
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Triggered == false)
+        {
+            StartCoroutine(Position2());
+        }
+
         //Sets camera into position 2 when the number 1 is pressed. Not on the NumPad.
         if (Input.GetKeyDown(KeyCode.Alpha2) && Triggered == false)
         {
@@ -24,15 +30,17 @@ public class CameraPositioning : MonoBehaviour
         }
 
         //Sets camera into position 2 when the number 2 is pressed. Not on the NumPad.
-        if (Input.GetKeyDown(KeyCode.Alpha1) && Triggered == false)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && Triggered == false)
         {
-            StartCoroutine(Position2());
+            StartCoroutine(Position3());
+            print("hit");
         }
     }
 
-    IEnumerator Position1()
+    IEnumerator Position2()
     {
-        Anim.SetTrigger("Active"); //Triggers Animation/
+
+        Anim.SetTrigger("Angle 1"); //Triggers Animation
 
         //Checks if the routine has been triggered, stops repeated input.
         Triggered = true;
@@ -40,10 +48,20 @@ public class CameraPositioning : MonoBehaviour
         Triggered = false;
     }
 
-    IEnumerator Position2()
+    IEnumerator Position1()
     {
-        
-        Anim.SetTrigger("Back"); //Triggers Animation
+        Anim.SetTrigger("Angle 2"); //Triggers Animation/
+
+        //Checks if the routine has been triggered, stops repeated input.
+        Triggered = true;
+        yield return new WaitForSeconds(ChangeTime);
+        Triggered = false;
+    }
+
+    IEnumerator Position3()
+    {
+
+        Anim.SetTrigger("Angle 3"); //Triggers Animation
 
         //Checks if the routine has been triggered, stops repeated input.
         Triggered = true;
