@@ -6,11 +6,19 @@ using System;
 public class Enemy : MonoBehaviour
 {
     private NavMeshAgent Guard;     //Reference to the NavMesh used for the enemy movement.
+
     private Transform Player;       //Reference to the player's location.
+
     private GameObject Chara;       //Reference to the player.
+
     public bool Triggered = false;  //Reference to if an object enters the sight of the enemy. Public as it will be used by other scripts.
     public bool EyeTrig = false;    //Reference for the Eye AI. If the Eye sees the player, this is called.
+    private bool CanAttack = true;
+
+
     public float AttackRange = 1f;  //Reference to the attack range. Public for designing and tersting the range.
+    public int Damage = 1;
+
     RaycastHit HitData;             //Reference Data from where the Raycast hits
 
     // Start is called before the first frame update
@@ -47,7 +55,12 @@ public class Enemy : MonoBehaviour
             //If the player is in range, this is the attack logic.
             if (HitDis <= AttackRange)
             {
-                Debug.Log("Hit");
+                if (CanAttack == true)
+                {
+                    StartCoroutine(HitPlayer());
+                }
+
+                //Debug.Log("Hit");
             }
         }
 
@@ -78,4 +91,14 @@ public class Enemy : MonoBehaviour
         }
         
     }
+
+    IEnumerator HitPlayer()
+    {
+        CanAttack = false;
+        Chara.GetComponent<PlayerHealth>().DamagePlayer(Damage);
+        yield return new WaitForSeconds(1f);
+        CanAttack = true;
+        
+    }
+
 }
