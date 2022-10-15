@@ -43,40 +43,36 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //print(Index);
-
-
-        if (Guard.remainingDistance <=1)
-        {
-            //Index = Random.Range(0, PatrolPoints.Length - 1);
-
-            if (PatrolRange == false)
-            {
-
-                if (RandomPath == true)
+                if (Guard.remainingDistance <= 1)
                 {
-                    //print(Index);
-                    if (Random.Range(0, 2) == 0)
-                    {
-                        Next();
+                    //Index = Random.Range(0, PatrolPoints.Length - 1);
 
-                    }
-                    else
+                    if (PatrolRange == false)
                     {
 
-                        Back();
+                        if (RandomPath == true)
+                        {
+                            //print(Index);
+                            if (Random.Range(0, 2) == 0)
+                            {
+                                Next();
 
+                            }
+                            else
+                            {
+
+                                Back();
+
+                            }
+                        }
+                        else
+                        {
+                            Next();
+
+                        }
+                        //StartCoroutine(GaurdReached());
                     }
                 }
-                else
-                {
-                    Next();
-
-                }
-                //StartCoroutine(GaurdReached());
-            }
-        }
 
 
 
@@ -119,10 +115,11 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if(EyeTrig== false)
+            if(EyeTrig == false)
             {
                 Guard.SetDestination(PatrolTarget);
             }
+
         }
 
         if(EyeTrig == true)
@@ -187,7 +184,7 @@ public class Enemy : MonoBehaviour
         {
             Index = 0;
         }
-        Debug.Log("Hit");
+        //Debug.Log("Hit");
         PatrolTarget = new Vector3(PatrolPoints[Index].transform.position.x, transform.position.y, PatrolPoints[Index].transform.position.z);
     }
 
