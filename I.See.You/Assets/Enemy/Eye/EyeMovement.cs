@@ -61,11 +61,6 @@ public class EyeMovement : MonoBehaviour
             //Randomly choses what the next point is in the list.
             if (Random.Range(0, 2) == 0)
             {
-
-
-
-
-
                 Next();
 
                 if (TurnBack == false)
