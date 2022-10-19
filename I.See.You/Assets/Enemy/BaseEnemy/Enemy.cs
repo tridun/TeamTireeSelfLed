@@ -10,18 +10,26 @@ public class Enemy : MonoBehaviour
     private Transform Player;       //Reference to the player's location.
 
     private GameObject Chara;       //Reference to the player.
+
     public GameObject[] PatrolPoints;
 
     private Vector3 PatrolTarget;
 
+
     public bool Triggered = false;  //Reference to if an object enters the sight of the enemy. Public as it will be used by other scripts.
     private bool PlayerSeen = false;
     public bool EyeTrig = false;    //Reference for the Eye AI. If the Eye sees the player, this is called.
+
     public bool RandomPath = false;
     private bool PatrolRange = false;
 
     public float AttackRange = 1f;  //Reference to the attack range. Public for designing and tersting the range.
     private int Index = 0;
+    private bool CanAttack = true;
+
+
+    public float AttackRange = 1f;  //Reference to the attack range. Public for designing and tersting the range.
+    public int Damage = 1;
 
     RaycastHit HitData;             //Reference Data from where the Raycast hits
 
@@ -118,6 +126,13 @@ public class Enemy : MonoBehaviour
             if(EyeTrig == false)
             {
                 Guard.SetDestination(PatrolTarget);
+
+                if (CanAttack == true)
+                {
+                    StartCoroutine(HitPlayer());
+                }
+
+                //Debug.Log("Hit");
             }
 
         }
@@ -174,8 +189,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-
-    //Sets index to next one.
+//Sets index to next one.
     void Next()
     {
 
@@ -204,5 +218,14 @@ public class Enemy : MonoBehaviour
         PatrolRange = true;
         yield return new WaitForSeconds(2f);
         PatrolRange = false;
+    }
+
+    IEnumerator HitPlayer()
+    {
+        CanAttack = false;
+        Chara.GetComponent<PlayerHealth>().DamagePlayer(Damage);
+        yield return new WaitForSeconds(1f);
+        CanAttack = true;
+        
     }
 }
