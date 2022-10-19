@@ -31,7 +31,7 @@ public class BlockRotate : MonoBehaviour
     private void OnMouseOver()
     {
         //Checks if the left mouse button is pressed.
-        if (Input.GetMouseButton(0) && Triggered == false && LimitLeft > 0 && LimitLeft < MaxLeft)
+        if (Input.GetMouseButton(0) && Triggered == false && LimitLeft > 0 && LimitLeft < (MaxLeft+1))
         {
             Triggered = true;
             TurningLeft = true;
@@ -53,7 +53,7 @@ public class BlockRotate : MonoBehaviour
         }
 
         //Checks if the Right mouse button is pressed.
-        if (Input.GetMouseButton(1) && Triggered == false && LimitRight > 0 && LimitRight < MaxRight)
+        if (Input.GetMouseButton(1) && Triggered == false && LimitRight > 0 && LimitRight < (MaxRight + 1))
         {
             Triggered = true;
             TurningRight = true;
