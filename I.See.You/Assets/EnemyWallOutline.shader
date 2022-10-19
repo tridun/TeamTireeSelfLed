@@ -81,7 +81,7 @@ Shader "Unlit/EnemyWallOutline"
                 
                 ENDCG
                 ZTest Greater
-                Lighting Off
+                //Lighting Off
                 //Color[_OutColor]
         }
 
@@ -210,6 +210,7 @@ Shader "Unlit/EnemyWallOutline"
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
+
 
             struct appdata
             {
