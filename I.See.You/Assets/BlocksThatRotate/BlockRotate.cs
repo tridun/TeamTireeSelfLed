@@ -104,12 +104,12 @@ public class BlockRotate : MonoBehaviour
         Block.transform.Rotate(0, -90, 0); //A shap rotation of the block.
         //transform.rotation = Quaternion.Slerp(transform.rotation, BlockRot, RotateTime);
 
-
+        TurningLeft = false;
         //Checks if the routine has been triggered, stops repeated input.
 
         yield return new WaitForSeconds(RotateTime);
         Triggered = false;
-        TurningLeft = false;
+        
     }
 
     IEnumerator RightRotate()
@@ -121,13 +121,13 @@ public class BlockRotate : MonoBehaviour
         //print(BlockRot.y);
 
         Block.transform.Rotate(0, 90, 0); //A shap rotation of the block.
-        //transform.rotation = Quaternion.Slerp(transform.rotation, BlockRot, 6 * Time.deltaTime);
-        
+                                          //transform.rotation = Quaternion.Slerp(transform.rotation, BlockRot, 6 * Time.deltaTime);
 
+        TurningRight = false;
         //Checks if the routine has been triggered, stops repeated input.
-        
+
         yield return new WaitForSeconds(RotateTime);
         Triggered = false;
-        TurningRight = false;
+        
     }
 }
