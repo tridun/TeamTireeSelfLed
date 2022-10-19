@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     private float PlayerSpeed;              //Speed of the player
     public float Walking = 2f;              //Walking Speed
     public float Running = 4f;              //Running Speed
+    private float Ground;
     public Material[] EnemyChange;
     private GameObject[] Guard;     //Array for the guard assets
     private MeshRenderer Meshs;
@@ -18,6 +19,7 @@ public class Movement : MonoBehaviour
         //Sets player controller.
         Control = gameObject.AddComponent<CharacterController>();
         Guard = GameObject.FindGameObjectsWithTag("Enemy");
+        Ground = transform.position.y;
     }
 
     // Update is called once per frame
@@ -55,7 +57,9 @@ public class Movement : MonoBehaviour
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); //Gets movement input.
         move = Vector3.ClampMagnitude(move, 1); //Sets the movement speed to be the same no matter the direction.
+        
 
         Control.Move(move * Time.deltaTime * PlayerSpeed); //The movement speed of the player
+        transform.position = new Vector3(transform.position.x, Ground, transform.position.z);
     }
 }

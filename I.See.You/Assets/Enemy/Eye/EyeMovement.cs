@@ -26,7 +26,7 @@ public class EyeMovement : MonoBehaviour
 
     private void Awake()
     {
-        Points = GameObject.FindGameObjectsWithTag("Waypoint"); //Adds the waypoijts to the array.
+        //Points = GameObject.FindGameObjectsWithTag("Waypoint"); //Adds the waypoijts to the array.
         Player = GameObject.FindGameObjectWithTag("Player");
         EyeSight = GameObject.FindGameObjectWithTag("EyeSight");
 
@@ -60,6 +60,14 @@ public class EyeMovement : MonoBehaviour
             if (WayRot.ConLeft == false && WayRot.ConRight == false)
             {
 
+                Next();
+
+                if (TurnBack == false)
+                {
+                    //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
+                    ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
+
+
                 //Randomly choses what the next point is in the list.
                 if (Random.Range(0, 2) == 0)
                 {
@@ -79,8 +87,6 @@ public class EyeMovement : MonoBehaviour
                     {
                         ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotRight, ReturnRot.z);
                     }
-
-                    
                 }
             }
             else
