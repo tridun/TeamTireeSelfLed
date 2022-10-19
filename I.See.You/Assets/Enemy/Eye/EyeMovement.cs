@@ -22,6 +22,7 @@ public class EyeMovement : MonoBehaviour
 
     private bool TurnNext = true;
     private bool TurnBack = true;
+    private bool Fired = false;
 
     private void Awake()
     {
@@ -52,36 +53,67 @@ public class EyeMovement : MonoBehaviour
         if (transform.position == ChosenPoint)
         {
 
-            
+
 
             //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime)
 
-            
-
-            //Randomly choses what the next point is in the list.
-            if (Random.Range(0, 2) == 0)
+            if (WayRot.ConLeft == false && WayRot.ConRight == false)
             {
-                Next();
 
-                if (TurnBack == false)
+                //Randomly choses what the next point is in the list.
+                if (Random.Range(0, 2) == 0)
                 {
-                    //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
-                    ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
+                    Next();
+
+                    if (TurnBack == false)
+                    {
+                        //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
+                        ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
+                    }
                 }
-}
+                else
+                {
+                    Back();
+
+                    if (TurnNext == false)
+                    {
+                        ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotRight, ReturnRot.z);
+                    }
+
+                    
+                }
+            }
             else
             {
-                if (TurnNext == false)
+                if(WayRot.ConLeft == true)
                 {
-                    ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotRight, ReturnRot.z);
+                    Back();
+
+                    if (TurnNext == false)
+                    {
+                        ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotRight, ReturnRot.z);
+                    }
+
+                    
                 }
-                Back();
+                if(WayRot.ConRight == true)
+                {
+                    Next();
+
+                    if (TurnBack == false)
+                    {
+                        //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
+                        ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
+                    }
+
+                    
+                }
             }
         }
 
-        
+        //Debug.Log(Trig.Firing);
 
-        if (Trig.PlayerSeen == false)
+        if (Trig.PlayerSeen == false && Trig.Firing == false)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, ReturnRot, RotSpeed);
 
@@ -90,8 +122,11 @@ public class EyeMovement : MonoBehaviour
         }
         else
         {
-            Vector3 PlayerDir = Vector3.RotateTowards(transform.forward, AimPlayer, RotSpeed, 0.0f);
-            transform.rotation = Quaternion.LookRotation(PlayerDir);
+            if (Trig.Tag == "Player")
+            {
+                Vector3 PlayerDir = Vector3.RotateTowards(transform.forward, AimPlayer, RotSpeed, 0.0f);
+                transform.rotation = Quaternion.LookRotation(PlayerDir);
+            }
         }
 
 
