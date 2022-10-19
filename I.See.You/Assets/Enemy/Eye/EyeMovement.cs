@@ -22,7 +22,6 @@ public class EyeMovement : MonoBehaviour
 
     private bool TurnNext = true;
     private bool TurnBack = true;
-    private bool Fired = false;
 
     private void Awake()
     {
@@ -54,44 +53,43 @@ public class EyeMovement : MonoBehaviour
         {
 
 
-
             //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime)
 
             if (WayRot.ConLeft == false && WayRot.ConRight == false)
             {
 
-                Next();
+                
+                //if (TurnBack == false)
+                //{
+                //    //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
+                //    ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
 
-                if (TurnBack == false)
-                {
-                    //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
-                    ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
 
-
-                //Randomly choses what the next point is in the list.
-                if (Random.Range(0, 2) == 0)
-                {
-                    Next();
-
-                    if (TurnBack == false)
+                    //Randomly choses what the next point is in the list.
+                    if (Random.Range(0, 2) == 0)
                     {
-                        //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
-                        ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
-                    }
-                }
-                else
-                {
-                    Back();
+                        Next();
 
-                    if (TurnNext == false)
-                    {
-                        ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotRight, ReturnRot.z);
+                        if (TurnBack == false)
+                        {
+                            //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
+                            ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
+                        }
                     }
-                }
+                    else
+                    {
+                        Back();
+
+                        if (TurnNext == false)
+                        {
+                            ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotRight, ReturnRot.z);
+                        }
+                    }
+                //}
             }
             else
             {
-                if(WayRot.ConLeft == true)
+                if (WayRot.ConLeft == true)
                 {
                     Back();
 
@@ -100,9 +98,9 @@ public class EyeMovement : MonoBehaviour
                         ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotRight, ReturnRot.z);
                     }
 
-                    
+
                 }
-                if(WayRot.ConRight == true)
+                if (WayRot.ConRight == true)
                 {
                     Next();
 
@@ -112,11 +110,10 @@ public class EyeMovement : MonoBehaviour
                         ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
                     }
 
-                    
+
                 }
             }
         }
-
         //Debug.Log(Trig.Firing);
 
         if (Trig.PlayerSeen == false && Trig.Firing == false)
@@ -138,14 +135,17 @@ public class EyeMovement : MonoBehaviour
 
     }
 
+
+
+
     //Sets index to next one.
     void Next()
     {
         TurnNext = true;
         TurnBack = false;
-
+        print("Left");
         PointIndex++;
-        if(PointIndex > (Points.Length - 1))
+        if (PointIndex > (Points.Length - 1))
         {
             PointIndex = 0;
         }
@@ -156,12 +156,11 @@ public class EyeMovement : MonoBehaviour
     {
         TurnBack = true;
         TurnNext = false;
-
+        print("Rigth");
         PointIndex--;
         if (PointIndex < 0)
         {
             PointIndex = Points.Length - 1;
         }
     }
-
 }

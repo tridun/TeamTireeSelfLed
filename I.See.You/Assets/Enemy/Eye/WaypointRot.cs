@@ -7,8 +7,8 @@ public class WaypointRot : MonoBehaviour
 
     public float RotLeft;
     public float RotRight;
-    public bool ConLeft;
-    public bool ConRight;
+    public bool ConLeft = false;
+    public bool ConRight = false;
 
 
     // Start is called before the first frame update

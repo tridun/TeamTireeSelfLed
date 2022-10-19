@@ -27,8 +27,6 @@ public class Enemy : MonoBehaviour
     private int Index = 0;
     private bool CanAttack = true;
 
-
-    public float AttackRange = 1f;  //Reference to the attack range. Public for designing and tersting the range.
     public int Damage = 1;
 
     RaycastHit HitData;             //Reference Data from where the Raycast hits
@@ -78,8 +76,8 @@ public class Enemy : MonoBehaviour
                             Next();
 
                         }
-                        //StartCoroutine(GaurdReached());
-                    }
+                //StartCoroutine(GaurdReached());
+            }
                 }
 
 
@@ -105,8 +103,13 @@ public class Enemy : MonoBehaviour
 
                 if (HitDis <= AttackRange)
                 {
-
+                    if (CanAttack == true)
+                    {
+                        StartCoroutine(HitPlayer());
+                        print("Ghost");
+                    }
                 }
+
             }
             else
             {
@@ -127,10 +130,7 @@ public class Enemy : MonoBehaviour
             {
                 Guard.SetDestination(PatrolTarget);
 
-                if (CanAttack == true)
-                {
-                    StartCoroutine(HitPlayer());
-                }
+
 
                 //Debug.Log("Hit");
             }
@@ -153,7 +153,11 @@ public class Enemy : MonoBehaviour
 
             if (HitDis <= AttackRange)
             {
-                
+                if (CanAttack == true)
+                {
+                    StartCoroutine(HitPlayer());
+                    print("Ghost");
+                }
             }
         }
         else
