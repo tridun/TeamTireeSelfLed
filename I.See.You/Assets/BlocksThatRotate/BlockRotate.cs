@@ -5,10 +5,15 @@ using UnityEngine;
 public class BlockRotate : MonoBehaviour    
 {
     public GameObject Block;            //References the block in question
+    public GameObject[] RotBlocksAttached;
+
     private Quaternion BlockRot;
+
     private bool Triggered = false;     //Controls the input.
     private bool TurningLeft = false;
     private bool TurningRight = false;
+    public bool Rotation = false;
+
     public float RotateTime = 1f;     //Controls time between inputs.
     public float LimitRight = 1f;
     public float LimitLeft = 1f;
@@ -76,19 +81,27 @@ public class BlockRotate : MonoBehaviour
             //BlockRot = Quaternion.Euler(BlockRot.x, (BlockRot.eulerAngles.y + 90), BlockRot.z);
         }
 
-        if(TurningLeft == true)
+        if (TurningLeft == true)
         {
             //Starts Coroutine for rotating the block to the left.
             StartCoroutine(LeftRotate());
+            foreach (var I in RotBlocksAttached)
+            {
+                I.GetComponent<BlockRotate>().TurningLeft = true;
+            }
+
+            if (TurningRight == true)
+            {
+                //Starts Coroutine for rotating the block to the right.
+                StartCoroutine(RightRotate());
+
+                foreach (var I in RotBlocksAttached)
+                {
+                    I.GetComponent<BlockRotate>().TurningRight = true;
+                }
+            }
+
         }
-
-        if (TurningRight == true)
-        {
-            //Starts Coroutine for rotating the block to the right.
-            StartCoroutine(RightRotate());
-        }
-
-
 
 
     }
@@ -129,5 +142,43 @@ public class BlockRotate : MonoBehaviour
         yield return new WaitForSeconds(RotateTime);
         Triggered = false;
         
+    }
+
+    IEnumerator LeftRotateOther()
+    {
+        ////Below is an alternative way to rotate the block.
+        //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime);
+
+
+        //print(BlockRot.y);
+
+        Block.transform.Rotate(0, -90, 0); //A shap rotation of the block.
+        //transform.rotation = Quaternion.Slerp(transform.rotation, BlockRot, RotateTime);
+
+        TurningLeft = false;
+        //Checks if the routine has been triggered, stops repeated input.
+
+        yield return new WaitForSeconds(RotateTime);
+        Triggered = false;
+
+    }
+
+    IEnumerator RightRotateOther()
+    {
+        ////Below is an alternative way to rotate the block.
+        //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
+
+
+        //print(BlockRot.y);
+
+        Block.transform.Rotate(0, 90, 0); //A shap rotation of the block.
+                                          //transform.rotation = Quaternion.Slerp(transform.rotation, BlockRot, 6 * Time.deltaTime);
+
+        TurningRight = false;
+        //Checks if the routine has been triggered, stops repeated input.
+
+        yield return new WaitForSeconds(RotateTime);
+        Triggered = false;
+
     }
 }
