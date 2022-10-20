@@ -280,7 +280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
       propertyPath: RotRight
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
@@ -1673,11 +1673,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
       propertyPath: RotLeft
-      value: 0
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
+      propertyPath: ConRight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
       propertyPath: RotRight
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
@@ -2253,11 +2257,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
       propertyPath: RotLeft
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
       propertyPath: RotRight
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
@@ -3205,7 +3209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
       propertyPath: RotLeft
-      value: -90
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
       propertyPath: RotRight
@@ -3647,12 +3651,16 @@ PrefabInstance:
       value: WayPoint (5)
       objectReference: {fileID: 0}
     - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
+      propertyPath: ConLeft
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
       propertyPath: RotLeft
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
       propertyPath: RotRight
-      value: 180
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
