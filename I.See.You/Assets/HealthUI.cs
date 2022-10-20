@@ -21,9 +21,16 @@ public class HealthUI : MonoBehaviour
 
     }
 
+    public void MAXHealth (int Max)
+    {
+        Bar.maxValue = Max;
+        Bar.value = Max;
+    }
+
+
     public void SliderValue (int Health)
     {
-        Bar.value = HealthScript.Health / 2;
+        Bar.value = Health;
     }
 
 }
