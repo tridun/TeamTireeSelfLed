@@ -350,19 +350,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: MaxLeft
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: MaxRight
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: LimitLeft
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: LimitRight
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318828, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -449,19 +449,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: MaxLeft
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: MaxRight
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: LimitLeft
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: LimitRight
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318828, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2587,19 +2587,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: MaxLeft
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: MaxRight
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: LimitLeft
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: LimitRight
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3905457947780318827, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
       propertyPath: RotBlocksAttached.Array.size

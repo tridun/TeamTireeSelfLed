@@ -12,7 +12,6 @@ public class BlockRotate : MonoBehaviour
     private bool Triggered = false;     //Controls the input.
     private bool TurningLeft = false;
     private bool TurningRight = false;
-    public bool Rotation = false;
 
     public float RotateTime = 1f;     //Controls time between inputs.
     public float LimitRight = 1f;
@@ -80,7 +79,10 @@ public class BlockRotate : MonoBehaviour
 
             //BlockRot = Quaternion.Euler(BlockRot.x, (BlockRot.eulerAngles.y + 90), BlockRot.z);
         }
+    }
 
+    public void Update()
+    {
         if (TurningLeft == true)
         {
             //Starts Coroutine for rotating the block to the left.
@@ -89,21 +91,17 @@ public class BlockRotate : MonoBehaviour
             {
                 I.GetComponent<BlockRotate>().TurningLeft = true;
             }
-
-            if (TurningRight == true)
-            {
-                //Starts Coroutine for rotating the block to the right.
-                StartCoroutine(RightRotate());
-
-                foreach (var I in RotBlocksAttached)
-                {
-                    I.GetComponent<BlockRotate>().TurningRight = true;
-                }
-            }
-
         }
+        if (TurningRight == true)
+        {
+            //Starts Coroutine for rotating the block to the right.
+            StartCoroutine(RightRotate());
 
-
+            foreach (var I in RotBlocksAttached)
+            {
+                I.GetComponent<BlockRotate>().TurningRight = true;
+            }
+        }
     }
 
     IEnumerator LeftRotate()
