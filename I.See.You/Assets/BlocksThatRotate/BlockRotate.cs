@@ -28,7 +28,7 @@ public class BlockRotate : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         BlockRot = transform.rotation;
         TurningRot = transform.rotation.eulerAngles.y;
-        print(TurningRot);
+        //print(TurningRot);
     }
 
     //Checks if the mouse cursor is hovering over the object.

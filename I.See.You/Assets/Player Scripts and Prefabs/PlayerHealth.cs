@@ -6,6 +6,9 @@ public class PlayerHealth : MonoBehaviour
 {
     public int MaxHealth = 2;
     public int Health;
+    public int InvTimer = 3;
+
+    private bool Hurt = false;
 
     public HealthUI Bar;
 
@@ -21,19 +24,25 @@ public class PlayerHealth : MonoBehaviour
     {
         if (Health == 0)
         {
-            print("Dead");
+            //print("Dead");
         }
     }
 
     public void DamagePlayer(int Hit)
     {
-        Health = Health - Hit;
-        Bar.SliderValue(Health);
+        if (Hurt == false)
+        {
+            StartCoroutine(Invulnerable());
+            Health = Health - Hit;
+            Bar.SliderValue(Health);
+        }
     }
 
     IEnumerator Invulnerable()
     {
-        yield return new WaitForSeconds(3);
+        Hurt = true;
+        yield return new WaitForSeconds(InvTimer);
+        Hurt = false;
     }
 
 }

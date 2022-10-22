@@ -37,7 +37,7 @@ public class EyeMovement : MonoBehaviour
         Return = transform.rotation.eulerAngles;
 
         ReturnRot = transform.rotation;
-        Debug.Log(Return);
+        //Debug.Log(Return);
     }
 
     // Update is called once per frame
@@ -152,7 +152,7 @@ public class EyeMovement : MonoBehaviour
     {
         TurnBack = true;
         TurnNext = false;
-        print("Rigth");
+        //print("Right");
         PointIndex--;
         if (PointIndex < 0)
         {

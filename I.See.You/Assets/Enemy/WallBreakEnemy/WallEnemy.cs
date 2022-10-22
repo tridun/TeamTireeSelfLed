@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-//using System;
-public class Enemy : MonoBehaviour
+
+public class WallEnemy : MonoBehaviour
 {
-    private NavMeshAgent Guard;     //Reference to the NavMesh used for the enemy movement.
+    private UnityEngine.AI.NavMeshAgent Guard;     //Reference to the NavMesh used for the enemy movement.
 
     private Transform Player;       //Reference to the player's location.
 
@@ -15,13 +14,15 @@ public class Enemy : MonoBehaviour
 
     private Vector3 PatrolTarget;
 
+    public LayerMask BreakWall;
 
     public bool Triggered = false;  //Reference to if an object enters the sight of the enemy. Public as it will be used by other scripts.
-    private bool PlayerSeen = false;
-    public bool EyeTrig = false;    //Reference for the Eye AI. If the Eye sees the player, this is called.
+    public bool PlayerSeen = false;
+    public bool EyeAlarm = false;    //Reference for the Eye AI. If the Eye sees the player, this is called.
 
     public bool RandomPath = false;
     private bool PatrolRange = false;
+    public bool DestructionPath = false;
 
     public float AttackRange = 1f;  //Reference to the attack range. Public for designing and tersting the range.
     private int Index = 0;
@@ -30,6 +31,7 @@ public class Enemy : MonoBehaviour
     public int Damage = 1;
 
     RaycastHit HitData;             //Reference Data from where the Raycast hits
+    RaycastHit BreakData;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,7 @@ public class Enemy : MonoBehaviour
         //Sets a Game Object to the Player Character.
         Chara = GameObject.FindGameObjectWithTag("Player");
         Player = Chara.transform;
-        Guard = GetComponent<NavMeshAgent>();
+        Guard = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         Index = 0;
         //SetDestination();
@@ -49,36 +51,36 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-                if (Guard.remainingDistance <= 1)
-                {
-                    //Index = Random.Range(0, PatrolPoints.Length - 1);
+        if (Guard.remainingDistance <= 1)
+        {
+            //Index = Random.Range(0, PatrolPoints.Length - 1);
 
-                    if (PatrolRange == false)
+            if (PatrolRange == false)
+            {
+
+                if (RandomPath == true)
+                {
+                    //print(Index);
+                    if (Random.Range(0, 2) == 0)
+                    {
+                        Next();
+
+                    }
+                    else
                     {
 
-                        if (RandomPath == true)
-                        {
-                            //print(Index);
-                            if (Random.Range(0, 2) == 0)
-                            {
-                                Next();
+                        Back();
 
-                            }
-                            else
-                            {
+                    }
+                }
+                else
+                {
+                    Next();
 
-                                Back();
-
-                            }
-                        }
-                        else
-                        {
-                            Next();
-
-                        }
+                }
                 //StartCoroutine(GaurdReached());
             }
-                }
+        }
 
 
 
@@ -86,7 +88,9 @@ public class Enemy : MonoBehaviour
         if (Triggered == true)
         {
             //Casts a Raycast to see if the player is in sight.
-            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10);
+            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10, ~BreakWall);
+
+            
 
             //Checks what tag the collided object is.
             string tag = HitData.collider.tag;
@@ -94,11 +98,15 @@ public class Enemy : MonoBehaviour
             //Checks the distacne between the enemy and the player
             float HitDis = HitData.distance;
 
+            
+
+
+
             //If the tag is "Player", begins to chase.
             if (tag == "Player")
             {
                 PlayerSeen = true;
-
+                DestructionPath = true;
                 Guard.SetDestination(Player.position);
 
                 if (HitDis <= AttackRange)
@@ -106,15 +114,20 @@ public class Enemy : MonoBehaviour
                     if (CanAttack == true)
                     {
                         StartCoroutine(HitPlayer());
-                        print("Ghost");
+                        //print("Ghost");
                     }
                 }
+
+
+
+
 
             }
             else
             {
                 PlayerSeen = false;
-                if (EyeTrig == false)
+                DestructionPath = false;
+                if (EyeAlarm == false)
                 {
                     Guard.SetDestination(PatrolTarget);
                 }
@@ -126,7 +139,10 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if(EyeTrig == false)
+
+            PlayerSeen = false;
+            DestructionPath = false;
+            if (EyeAlarm == false)
             {
                 Guard.SetDestination(PatrolTarget);
 
@@ -137,11 +153,11 @@ public class Enemy : MonoBehaviour
 
         }
 
-        if(EyeTrig == true)
+        if (EyeAlarm == true)
         {
             //Debug.Log(PlayerSeen);
             //Casts a Raycast to see if the player is in sight.
-            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10);
+            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10, ~BreakWall);
 
             //Checks what tag the collided object is.
             //string tag = HitData.collider.tag;
@@ -156,7 +172,7 @@ public class Enemy : MonoBehaviour
                 if (CanAttack == true)
                 {
                     StartCoroutine(HitPlayer());
-                    print("Ghost");
+                    //print("Ghost");
                 }
             }
         }
@@ -168,18 +184,51 @@ public class Enemy : MonoBehaviour
                 Guard.SetDestination(PatrolTarget);
             }
         }
+
+
+
+
+        if (DestructionPath == true)
+        {
+            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out BreakData, 10, BreakWall );
+
+            //Checks what tag the collided object is.
+            string BreakTag = HitData.collider.tag;
+            Debug.Log(BreakTag);
+            //Checks the distacne between the enemy and the player
+            float BreakHitDis = HitData.distance;
+
+            if (BreakTag == "DestructibleObject")
+            {
+                if (BreakHitDis <= 3)
+                {
+                    Destroy(BreakData.transform.gameObject);
+                }
+            }
+
+        }
+
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
+
+        print(other.gameObject.tag);
+
         //If Player enters trigger box, activate.
         if (other.gameObject.tag == "Player")
         {
             Triggered = true;
+            //print("HEllp");
 
         }
-        
+        if (other.gameObject.tag == "DestructibleObject")
+        {
+            DestructionPath = true;
+            print("HEllp");
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -190,10 +239,10 @@ public class Enemy : MonoBehaviour
             Triggered = false;
 
         }
-        
+
     }
 
-//Sets index to next one.
+    //Sets index to next one.
     void Next()
     {
 
@@ -206,18 +255,18 @@ public class Enemy : MonoBehaviour
         PatrolTarget = new Vector3(PatrolPoints[Index].transform.position.x, transform.position.y, PatrolPoints[Index].transform.position.z);
     }
 
-        //Sets Index to previous one.
-        void Back()
+    //Sets Index to previous one.
+    void Back()
+    {
+        Index--;
+        if (Index < 0)
         {
-            Index--;
-            if (Index < 0)
-            {
-                Index = PatrolPoints.Length - 1;
-            }
-            PatrolTarget = new Vector3(PatrolPoints[Index].transform.position.x, transform.position.y, PatrolPoints[Index].transform.position.z);
+            Index = PatrolPoints.Length - 1;
         }
+        PatrolTarget = new Vector3(PatrolPoints[Index].transform.position.x, transform.position.y, PatrolPoints[Index].transform.position.z);
+    }
 
-        IEnumerator GaurdReached()
+    IEnumerator GaurdReached()
     {
         PatrolRange = true;
         yield return new WaitForSeconds(2f);
@@ -230,6 +279,8 @@ public class Enemy : MonoBehaviour
         Chara.GetComponent<PlayerHealth>().DamagePlayer(Damage);
         yield return new WaitForSeconds(1f);
         CanAttack = true;
-        
+
     }
+
+
 }
