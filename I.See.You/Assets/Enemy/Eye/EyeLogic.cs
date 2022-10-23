@@ -8,6 +8,7 @@ public class EyeLogic : MonoBehaviour
 {
     private GameObject Chara;       //Reference to the player.
     private GameObject[] Guard;     //Array for the guard assets
+    private GameObject[] WallGuard;
     public bool Triggered = false;  //Reference to if an object enters the sight of the enemy.
     public bool PlayerSeen = false;
     public bool Firing = false;
@@ -15,6 +16,7 @@ public class EyeLogic : MonoBehaviour
     public float FiringTime = 2f;
     public int Damage = 1;
     public Enemy EyeTrig;           //Sets if the player is in sight or not to the eye.
+    public WallEnemy WallTrig;
     RaycastHit HitData;             //Reference Data from where the Raycast hits.
 
     // Start is called before the first frame update
@@ -23,6 +25,7 @@ public class EyeLogic : MonoBehaviour
         //Sets a Game Object to the Player Character and adds to guard array.
         Chara = GameObject.FindGameObjectWithTag("Player");
         Guard = GameObject.FindGameObjectsWithTag("Enemy");
+        WallGuard = GameObject.FindGameObjectsWithTag("WallEnemy");
 
     }
 
@@ -55,27 +58,52 @@ public class EyeLogic : MonoBehaviour
 
                     EyeTrig.EyeTrig = true;
                 }
-            }
-            else //Ensures guards don't follow the player's location when not in sight.
-            {
-                PlayerSeen = false; //For Another Script's Logic
-                foreach (var I in Guard)
+                foreach (var I in WallGuard)
                 {
-                    EyeTrig = I.GetComponent<Enemy>();
+                    WallTrig = I.GetComponent<WallEnemy>();
 
-                    EyeTrig.EyeTrig = false;
+                    WallTrig.EyeAlarm = true;
                 }
+
             }
+            //else //Ensures guards don't follow the player's location when not in sight.
+            //{
+            //    PlayerSeen = false; //For Another Script's Logic
+            //    foreach (var I in Guard)
+            //    {
+            //        EyeTrig = I.GetComponent<Enemy>();
+
+            //        EyeTrig.EyeTrig = false;
+            //    }
+
+
+
+            //    foreach (var I in WallGuard)
+            //    {
+            //        WallTrig = I.GetComponent<WallEnemy>();
+
+            //        WallTrig.EyeAlarm = false;
+            //    }
+            //}
         }
         else //Ensures guards don't follow the player's location when not in sight.
         {
             PlayerSeen = false;
+            foreach (var I in WallGuard)
+            {
+                WallTrig = I.GetComponent<WallEnemy>();
+
+                //WallTrig.EyeAlarm = false;
+            }
+
             foreach (var I in Guard)
             {
                 EyeTrig = I.GetComponent<Enemy>();
 
                 EyeTrig.EyeTrig = false;
             }
+
+            
         }
     }
 
