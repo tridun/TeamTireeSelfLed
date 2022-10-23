@@ -12,8 +12,6 @@ public class EyeMovement : MonoBehaviour
     private Vector3 ChosenPoint;    //The position of the chosen point.
     private Vector3 Return;
 
-    public float MovementSpeed = 2f;
-
     private Quaternion ReturnRot;
 
     private int PointIndex = 0;     //Checks which waypoint the script should reference
@@ -37,7 +35,7 @@ public class EyeMovement : MonoBehaviour
         Return = transform.rotation.eulerAngles;
 
         ReturnRot = transform.rotation;
-        //Debug.Log(Return);
+        Debug.Log(Return);
     }
 
     // Update is called once per frame
@@ -57,7 +55,7 @@ public class EyeMovement : MonoBehaviour
 
             //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime)
 
-            if (WayRot.StopAntiClockwise == false && WayRot.StopClockwise == false)
+            if (WayRot.ConLeft == false && WayRot.ConRight == false)
             {
 
                 
@@ -91,22 +89,28 @@ public class EyeMovement : MonoBehaviour
             }
             else
             {
-                if (WayRot.StopAntiClockwise == true)
+                if (WayRot.ConLeft == true)
                 {
+                    Back();
+
                     if (TurnNext == false)
                     {
                         ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotRight, ReturnRot.z);
                     }
-                    Back();
+
+
                 }
-                if (WayRot.StopClockwise == true)
+                if (WayRot.ConRight == true)
                 {
+                    Next();
+
                     if (TurnBack == false)
                     {
                         //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
                         ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
                     }
-                    Next();
+
+
                 }
             }
         }
@@ -117,7 +121,7 @@ public class EyeMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, ReturnRot, RotSpeed);
 
             ChosenPoint = Points[PointIndex].transform.position; //Sets the point the eye is moving to.
-            transform.position = Vector3.MoveTowards(transform.position, ChosenPoint, MovementSpeed * Time.deltaTime); //Moves eye to chosen point.
+            transform.position = Vector3.MoveTowards(transform.position, ChosenPoint, 2 * Time.deltaTime); //Moves eye to chosen point.
         }
         else
         {
@@ -152,7 +156,7 @@ public class EyeMovement : MonoBehaviour
     {
         TurnBack = true;
         TurnNext = false;
-        //print("Right");
+        print("Right");
         PointIndex--;
         if (PointIndex < 0)
         {

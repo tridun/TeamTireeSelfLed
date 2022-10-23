@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
                 {
                     //Index = Random.Range(0, PatrolPoints.Length - 1);
 
-                    if (PatrolRange == false)
+                    if (!PatrolRange )
                     {
 
                         if (RandomPath == true)
@@ -62,7 +62,6 @@ public class Enemy : MonoBehaviour
                             if (Random.Range(0, 2) == 0)
                             {
                                 Next();
-
                             }
                             else
                             {
@@ -77,7 +76,7 @@ public class Enemy : MonoBehaviour
 
                         }
                 //StartCoroutine(GaurdReached());
-            }
+                    }
                 }
 
 
@@ -196,7 +195,6 @@ public class Enemy : MonoBehaviour
 //Sets index to next one.
     void Next()
     {
-
         Index = Index + 1;
         if (Index > (PatrolPoints.Length - 1))
         {
@@ -206,16 +204,16 @@ public class Enemy : MonoBehaviour
         PatrolTarget = new Vector3(PatrolPoints[Index].transform.position.x, transform.position.y, PatrolPoints[Index].transform.position.z);
     }
 
-        //Sets Index to previous one.
-        void Back()
+    //Sets Index to previous one.
+    void Back()
+    {
+        Index--;
+        if (Index < 0)
         {
-            Index--;
-            if (Index < 0)
-            {
-                Index = PatrolPoints.Length - 1;
-            }
-            PatrolTarget = new Vector3(PatrolPoints[Index].transform.position.x, transform.position.y, PatrolPoints[Index].transform.position.z);
+            Index = PatrolPoints.Length - 1;
         }
+        PatrolTarget = new Vector3(PatrolPoints[Index].transform.position.x, transform.position.y, PatrolPoints[Index].transform.position.z);
+    }
 
         IEnumerator GaurdReached()
     {
