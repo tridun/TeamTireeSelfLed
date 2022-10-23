@@ -156,7 +156,7 @@ public class EyeMovement : MonoBehaviour
     {
         TurnBack = true;
         TurnNext = false;
-        print("Rigth");
+        print("Right");
         PointIndex--;
         if (PointIndex < 0)
         {
