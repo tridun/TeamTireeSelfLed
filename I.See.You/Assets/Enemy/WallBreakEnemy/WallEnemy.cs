@@ -194,7 +194,7 @@ public class WallEnemy : MonoBehaviour
 
             //Checks what tag the collided object is.
             string BreakTag = HitData.collider.tag;
-            Debug.Log(BreakTag);
+            //Debug.Log(BreakTag);
             //Checks the distacne between the enemy and the player
             float BreakHitDis = HitData.distance;
 
@@ -214,7 +214,7 @@ public class WallEnemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        print(other.gameObject.tag);
+        //print(other.gameObject.tag);
 
         //If Player enters trigger box, activate.
         if (other.gameObject.tag == "Player")
@@ -226,7 +226,7 @@ public class WallEnemy : MonoBehaviour
         if (other.gameObject.tag == "DestructibleObject")
         {
             DestructionPath = true;
-            print("HEllp");
+            //print("Help");
         }
 
     }
