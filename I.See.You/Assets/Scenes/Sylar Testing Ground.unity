@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4462561, g: 0.4960497, b: 0.57461804, a: 1}
+  m_IndirectSpecularColor: {r: 0.44625658, g: 0.49605024, b: 0.5746189, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -836,7 +836,7 @@ GameObject:
   - component: {fileID: 423913537}
   - component: {fileID: 423913536}
   m_Layer: 5
-  m_Name: Heath
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -876,8 +876,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bar: {fileID: 423913537}
-  Player: {fileID: 0}
-  HealthScript: {fileID: 0}
+  Player: {fileID: 1374839430}
+  HealthScript: {fileID: 1374839431}
 --- !u!114 &423913537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,9 +923,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 2
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3003,6 +3003,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8621712373835725465, guid: eda89fd4d73f11f46a962f8d24d36ffc, type: 3}
   m_PrefabInstance: {fileID: 1227584904}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1374839430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7376662902581182013, guid: edc04a586f1c4f945b32e40318ecab28, type: 3}
+  m_PrefabInstance: {fileID: 1783547520}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1374839431 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5559232679768043642, guid: edc04a586f1c4f945b32e40318ecab28, type: 3}
+  m_PrefabInstance: {fileID: 1783547520}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374839430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2b02d9ecfa5fa47901d1e49368f1cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1416853525
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4183,6 +4199,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5559232679768043642, guid: edc04a586f1c4f945b32e40318ecab28, type: 3}
+      propertyPath: Bar
+      value: 
+      objectReference: {fileID: 423913536}
     - target: {fileID: 7376662902581182006, guid: edc04a586f1c4f945b32e40318ecab28, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -33,6 +33,7 @@ MonoBehaviour:
   FiringTime: 2
   Damage: 1
   EyeTrig: {fileID: 0}
+  WallTrig: {fileID: 0}
 --- !u!1 &2160890910334938299
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,8 +78,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c85d2e1585fb745a46ad151b3fc5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Points: []
+  Points:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   EyeSight: {fileID: 1241989660643258558}
+  MovementSpeed: 2
   Trig: {fileID: 0}
   PlayerMove: {fileID: 0}
 --- !u!1 &2160890910850942740

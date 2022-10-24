@@ -29,7 +29,6 @@ public class EyeMovement : MonoBehaviour
     {
         //Points = GameObject.FindGameObjectsWithTag("Waypoint"); //Adds the waypoijts to the array.
         Player = GameObject.FindGameObjectWithTag("Player");
-        EyeSight = GameObject.FindGameObjectWithTag("EyeSight");
 
         Trig = EyeSight.GetComponent<EyeLogic>();
         PlayerMove = Player.GetComponent<Movement>();
