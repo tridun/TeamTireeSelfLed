@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour
     public float Walking = 2f;              //Walking Speed
     public float Running = 4f;              //Running Speed
     private float Ground;
+    public float SpeedBoost = 2f;
+    public bool Invulnerable = false;
     public Material[] EnemyChange;
     private GameObject[] Guard;     //Array for the guard assets
     private MeshRenderer Meshs;
@@ -28,11 +30,25 @@ public class Movement : MonoBehaviour
         //Determines of the player is running or not.
         if (Input.GetKey("left shift"))
         {
-            PlayerSpeed = Running;
+            if (Invulnerable == false)
+            {
+                PlayerSpeed = Running;
+            }
+            else
+            {
+                PlayerSpeed = Running * SpeedBoost;
+            }
         }
         else
         {
-            PlayerSpeed = Walking;
+            if (Invulnerable == false)
+            {
+                PlayerSpeed = Walking;
+            }
+            else
+            {
+                PlayerSpeed = Walking * SpeedBoost;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
