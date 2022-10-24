@@ -20,13 +20,13 @@ public class CameraPositioning : MonoBehaviour
         //Sets camera into position 2 when the number 2 is pressed. Not on the NumPad.
         if (Input.GetKeyDown(KeyCode.Alpha1) && Triggered == false)
         {
-            StartCoroutine(Position2());
+            StartCoroutine(Position1());
         }
 
         //Sets camera into position 2 when the number 1 is pressed. Not on the NumPad.
         if (Input.GetKeyDown(KeyCode.Alpha2) && Triggered == false)
         {
-            StartCoroutine(Position1());
+            StartCoroutine(Position2());
         }
 
         //Sets camera into position 2 when the number 2 is pressed. Not on the NumPad.
@@ -37,7 +37,7 @@ public class CameraPositioning : MonoBehaviour
         }
     }
 
-    IEnumerator Position2()
+    IEnumerator Position1()
     {
 
         Anim.SetTrigger("Angle 1"); //Triggers Animation
@@ -48,7 +48,7 @@ public class CameraPositioning : MonoBehaviour
         Triggered = false;
     }
 
-    IEnumerator Position1()
+    IEnumerator Position2()
     {
         Anim.SetTrigger("Angle 2"); //Triggers Animation/
 

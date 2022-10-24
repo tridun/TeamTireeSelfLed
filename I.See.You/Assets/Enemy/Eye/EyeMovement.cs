@@ -12,6 +12,8 @@ public class EyeMovement : MonoBehaviour
     private Vector3 ChosenPoint;    //The position of the chosen point.
     private Vector3 Return;
 
+    public float MovementSpeed = 2f;
+
     private Quaternion ReturnRot;
 
     private int PointIndex = 0;     //Checks which waypoint the script should reference
@@ -35,7 +37,7 @@ public class EyeMovement : MonoBehaviour
         Return = transform.rotation.eulerAngles;
 
         ReturnRot = transform.rotation;
-        Debug.Log(Return);
+        //Debug.Log(Return);
     }
 
     // Update is called once per frame
@@ -55,7 +57,7 @@ public class EyeMovement : MonoBehaviour
 
             //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime)
 
-            if (WayRot.ConLeft == false && WayRot.ConRight == false)
+            if (WayRot.StopAntiClockwise == false && WayRot.StopClockwise == false)
             {
 
                 
@@ -89,7 +91,7 @@ public class EyeMovement : MonoBehaviour
             }
             else
             {
-                if (WayRot.ConLeft == true)
+                if (WayRot.StopAntiClockwise == true)
                 {
                     Back();
 
@@ -100,7 +102,7 @@ public class EyeMovement : MonoBehaviour
 
 
                 }
-                if (WayRot.ConRight == true)
+                if (WayRot.StopClockwise == true)
                 {
                     Next();
 
@@ -121,7 +123,7 @@ public class EyeMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, ReturnRot, RotSpeed);
 
             ChosenPoint = Points[PointIndex].transform.position; //Sets the point the eye is moving to.
-            transform.position = Vector3.MoveTowards(transform.position, ChosenPoint, 2 * Time.deltaTime); //Moves eye to chosen point.
+            transform.position = Vector3.MoveTowards(transform.position, ChosenPoint, MovementSpeed * Time.deltaTime); //Moves eye to chosen point.
         }
         else
         {
@@ -143,7 +145,7 @@ public class EyeMovement : MonoBehaviour
     {
         TurnNext = true;
         TurnBack = false;
-        print("Left");
+        //print("Left");
         PointIndex++;
         if (PointIndex > (Points.Length - 1))
         {
@@ -156,7 +158,7 @@ public class EyeMovement : MonoBehaviour
     {
         TurnBack = true;
         TurnNext = false;
-        print("Right");
+        //print("Right");
         PointIndex--;
         if (PointIndex < 0)
         {

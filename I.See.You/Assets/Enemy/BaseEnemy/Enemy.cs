@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
                 {
                     //Index = Random.Range(0, PatrolPoints.Length - 1);
 
-                    if (!PatrolRange )
+                    if (PatrolRange == false)
                     {
 
                         if (RandomPath == true)
@@ -75,7 +75,9 @@ public class Enemy : MonoBehaviour
                             Next();
 
                         }
-                //StartCoroutine(GaurdReached());
+
+                        //StartCoroutine(GaurdReached());
+
                     }
                 }
 
@@ -215,7 +217,7 @@ public class Enemy : MonoBehaviour
         PatrolTarget = new Vector3(PatrolPoints[Index].transform.position.x, transform.position.y, PatrolPoints[Index].transform.position.z);
     }
 
-        IEnumerator GaurdReached()
+    IEnumerator GaurdReached()
     {
         PatrolRange = true;
         yield return new WaitForSeconds(2f);
