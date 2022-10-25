@@ -9,6 +9,7 @@ public class WallEnemy : MonoBehaviour
     private Transform Player;       //Reference to the player's location.
 
     private GameObject Chara;       //Reference to the player.
+    private GameObject Wall;
 
     public GameObject[] PatrolPoints;
 
@@ -105,19 +106,26 @@ public class WallEnemy : MonoBehaviour
             //If the tag is "Player", begins to chase.
             if (tag == "Player")
             {
-                PlayerSeen = true;
-                DestructionPath = true;
-                Guard.SetDestination(Player.position);
-
-                if (HitDis <= AttackRange)
+                if (DestructiblePath == true)
                 {
-                    if (CanAttack == true)
+                    Gaurd.SetDestination(Wall.position)
+                }
+                else 
+                {
+                    PlayerSeen = true;
+                    DestructionPath = true;
+                    Guard.SetDestination(Player.position);
+                    Wall = null;
+
+                    if (HitDis <= AttackRange)
                     {
-                        StartCoroutine(HitPlayer());
-                        //print("Ghost");
+                        if (CanAttack == true)
+                        {
+                            StartCoroutine(HitPlayer());
+                            //print("Ghost");
+                        }
                     }
                 }
-
 
 
 
@@ -153,7 +161,7 @@ public class WallEnemy : MonoBehaviour
 
         }
 
-        if (EyeAlarm == true)
+        if (EyeAlarm == true && DestructablePath == false)
         {
             //Debug.Log(PlayerSeen);
             //Casts a Raycast to see if the player is in sight.
@@ -178,7 +186,14 @@ public class WallEnemy : MonoBehaviour
         }
         else
         {
-
+            if (DestructiblePath == true)
+            {
+                GaurdReached().SetDestination(Wall)
+            }
+            else
+            {
+                Wall = null;
+            }
             if (PlayerSeen == false)
             {
                 Guard.SetDestination(PatrolTarget);
@@ -227,6 +242,7 @@ public class WallEnemy : MonoBehaviour
         {
             DestructionPath = true;
             //print("Help");
+            Wall = other.gameObject;
         }
 
     }

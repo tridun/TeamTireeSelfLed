@@ -13,7 +13,7 @@ public class KeyScript : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Q) && Range == true)
+        if (Range == true)
         {
             Scripts = SecurityDoor.GetComponent<SecurityDoorScript>();
 
