@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 3720272966313027657}
   m_Layer: 0
   m_Name: 4
-  m_TagString: Untagged
+  m_TagString: RotationBlocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
@@ -304,4 +304,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Block: {fileID: 3720272966313027660}
+  RotBlocksAttached: []
   RotateTime: 1
+  LimitRight: 1
+  LimitLeft: 1
+  MaxRight: 0
+  MaxLeft: 0
+  TurningRot: 0

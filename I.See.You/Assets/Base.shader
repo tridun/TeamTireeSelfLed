@@ -6,6 +6,10 @@ Shader "Custom/Base"
     }
         SubShader{
           Tags { "RenderType" = "Opaque" }
+
+          Blend SrcAlpha OneMinusSrcAlpha
+//ZWrite Off
+
           CGPROGRAM
           //#pragma surface surf Lambert
           #pragma surface surf Lambert fullforwardshadows

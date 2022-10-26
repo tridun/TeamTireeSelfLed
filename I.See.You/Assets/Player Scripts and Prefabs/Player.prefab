@@ -130,6 +130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Walking: 10
   Running: 10
+  SpeedBoost: 2
+  Invulnerable: 0
   EnemyChange:
   - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 2100000, guid: 957273e55445f2e48914809e8ebfdb5d, type: 2}
@@ -147,6 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 2
   Health: 0
+  InvTimer: 3
+  SpeedBoost: 2
+  PlayerMove: {fileID: 0}
   Bar: {fileID: 0}
 --- !u!1 &7376662903020087083
 GameObject:
@@ -161,6 +166,7 @@ GameObject:
   - component: {fileID: 7376662903020087080}
   - component: {fileID: 963194226}
   - component: {fileID: 963194230}
+  - component: {fileID: 1988592266}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -175,13 +181,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7376662903020087083}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 8, z: -8}
+  m_LocalRotation: {x: 0.29045945, y: -0.24684007, z: 0.07782836, w: 0.9212199}
+  m_LocalPosition: {x: 4, y: 7, z: -9.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7376662902581182006}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 35, y: -30, z: 0}
 --- !u!20 &7376662903020087081
 Camera:
   m_ObjectHideFlags: 0
@@ -265,3 +271,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChangeTime: 1
+--- !u!114 &1988592266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376662903020087083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01704274458722e4ea621e176f307b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyChange:
+  - {fileID: 2100000, guid: 36253329156cd044a937b2789dce4bd0, type: 2}
+  - {fileID: 2100000, guid: 8c9da0aa946534545a704aa57fed4e26, type: 2}
+  TransparencyValue: 0.5

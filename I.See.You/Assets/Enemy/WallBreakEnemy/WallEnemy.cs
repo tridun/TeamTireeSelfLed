@@ -106,9 +106,9 @@ public class WallEnemy : MonoBehaviour
             //If the tag is "Player", begins to chase.
             if (tag == "Player")
             {
-                if (DestructiblePath == true)
+                if (DestructionPath == true && Wall != null)
                 {
-                    Gaurd.SetDestination(Wall.position)
+                    Guard.SetDestination(Wall.transform.position);
                 }
                 else 
                 {
@@ -161,7 +161,7 @@ public class WallEnemy : MonoBehaviour
 
         }
 
-        if (EyeAlarm == true && DestructablePath == false)
+        if (EyeAlarm == true && DestructionPath == false)
         {
             //Debug.Log(PlayerSeen);
             //Casts a Raycast to see if the player is in sight.
@@ -186,9 +186,9 @@ public class WallEnemy : MonoBehaviour
         }
         else
         {
-            if (DestructiblePath == true)
+            if (DestructionPath == true)
             {
-                GaurdReached().SetDestination(Wall)
+                Guard.SetDestination(Wall.transform.position);
             }
             else
             {
