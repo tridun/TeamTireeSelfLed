@@ -9,6 +9,12 @@ TagManager:
   - EyeSight
   - DestructibleObject
   - WallEnemy
+  - Eye
+  - Floor
+  - SecurityDoor
+  - SecurityKey
+  - RotationBlocks
+  - Wall
   layers:
   - Default
   - TransparentFX
