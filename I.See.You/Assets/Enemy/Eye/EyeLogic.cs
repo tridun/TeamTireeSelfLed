@@ -7,16 +7,23 @@ using System;
 public class EyeLogic : MonoBehaviour
 {
     private GameObject Chara;       //Reference to the player.
+
     private GameObject[] Guard;     //Array for the guard assets
     private GameObject[] WallGuard;
+
     public bool Triggered = false;  //Reference to if an object enters the sight of the enemy.
     public bool PlayerSeen = false;
     public bool Firing = false;
+
     public string Tag;
+
     public float FiringTime = 2f;
+
     public int Damage = 1;
-    public Enemy EyeTrig;           //Sets if the player is in sight or not to the eye.
-    public WallEnemy WallTrig;
+
+    private Enemy EyeTrig;           //Sets if the player is in sight or not to the eye.
+    private WallEnemy WallTrig;
+    public Light EyeLight;
     RaycastHit HitData;             //Reference Data from where the Raycast hits.
 
     // Start is called before the first frame update
@@ -49,8 +56,14 @@ public class EyeLogic : MonoBehaviour
             if (Tag == "Player")
             {
                 PlayerSeen = true; //For Another Script's Logic. True if the player is in sight of the eye.
-                Firing = true;
-                StartCoroutine(Fired());
+                if (Firing == false)
+                {
+                    Firing = true;
+                    StartCoroutine(Fired());
+                }
+
+                
+                EyeLight.color = Color.red;
 
                 foreach (var I in Guard)
                 {
@@ -66,29 +79,31 @@ public class EyeLogic : MonoBehaviour
                 }
 
             }
-            //else //Ensures guards don't follow the player's location when not in sight.
-            //{
-            //    PlayerSeen = false; //For Another Script's Logic
-            //    foreach (var I in Guard)
-            //    {
-            //        EyeTrig = I.GetComponent<Enemy>();
+            else //Ensures guards don't follow the player's location when not in sight.
+            {
+                PlayerSeen = false; //For Another Script's Logic
+                EyeLight.color = Color.white;
+                foreach (var I in Guard)
+                {
+                    EyeTrig = I.GetComponent<Enemy>();
 
-            //        EyeTrig.EyeTrig = false;
-            //    }
+                    EyeTrig.EyeTrig = false;
+                }
 
 
 
-            //    foreach (var I in WallGuard)
-            //    {
-            //        WallTrig = I.GetComponent<WallEnemy>();
+                foreach (var I in WallGuard)
+                {
+                    WallTrig = I.GetComponent<WallEnemy>();
 
-            //        WallTrig.EyeAlarm = false;
-            //    }
-            //}
+                    WallTrig.EyeAlarm = false;
+                }
+            }
         }
         else //Ensures guards don't follow the player's location when not in sight.
         {
             PlayerSeen = false;
+            EyeLight.color = Color.white;
             foreach (var I in WallGuard)
             {
                 WallTrig = I.GetComponent<WallEnemy>();
@@ -130,15 +145,18 @@ public class EyeLogic : MonoBehaviour
 
     IEnumerator Fired()
     {
+
         yield return new WaitForSeconds(FiringTime);
+        if (Tag == "Player")
+        {
+            print(Tag);
+            Chara.GetComponent<PlayerHealth>().DamagePlayer(Damage);
+        }
         if (Tag == "DestructibleObject")
         {
             Destroy(HitData.transform.gameObject);
         }
-        if (Tag == "Player")
-        {
-            Chara.GetComponent<PlayerHealth>().DamagePlayer(Damage);
-        }
+
         Firing = false;
     }
 }

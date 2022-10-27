@@ -152,14 +152,14 @@ public class Enemy : MonoBehaviour
 
             Guard.SetDestination(Player.position);
 
-            if (HitDis <= AttackRange)
-            {
-                if (CanAttack == true)
-                {
-                    StartCoroutine(HitPlayer());
-                    print("Ghost");
-                }
-            }
+            //if (HitDis <= AttackRange)
+            //{
+            //    if (CanAttack == true)
+            //    {
+            //        StartCoroutine(HitPlayer());
+            //        print("Ghost");
+            //    }
+            //}
         }
         else
         {
@@ -215,13 +215,6 @@ public class Enemy : MonoBehaviour
             Index = PatrolPoints.Length - 1;
         }
         PatrolTarget = new Vector3(PatrolPoints[Index].transform.position.x, transform.position.y, PatrolPoints[Index].transform.position.z);
-    }
-
-    IEnumerator GaurdReached()
-    {
-        PatrolRange = true;
-        yield return new WaitForSeconds(2f);
-        PatrolRange = false;
     }
 
     IEnumerator HitPlayer()

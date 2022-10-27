@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int MaxHealth = 2;
     public int Health;
-    public int InvTimer = 3;
+    public int InvTimer = 5;
     public float SpeedBoost = 2f;
 
     private GameObject Player;

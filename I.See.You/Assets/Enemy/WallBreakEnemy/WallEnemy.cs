@@ -11,6 +11,8 @@ public class WallEnemy : MonoBehaviour
     private GameObject Chara;       //Reference to the player.
     private GameObject Wall;
 
+    public Light SightLight;
+
     public GameObject[] PatrolPoints;
 
     private Vector3 PatrolTarget;
@@ -106,9 +108,12 @@ public class WallEnemy : MonoBehaviour
             //If the tag is "Player", begins to chase.
             if (tag == "Player")
             {
+                SightLight.color = Color.red;
+
                 if (DestructionPath == true && Wall != null)
                 {
                     Guard.SetDestination(Wall.transform.position);
+                    SightLight.color = Color.blue;
                 }
                 else 
                 {
@@ -137,6 +142,7 @@ public class WallEnemy : MonoBehaviour
                 DestructionPath = false;
                 if (EyeAlarm == false)
                 {
+                    SightLight.color = Color.white;
                     Guard.SetDestination(PatrolTarget);
                 }
 
@@ -154,7 +160,7 @@ public class WallEnemy : MonoBehaviour
             {
                 Guard.SetDestination(PatrolTarget);
 
-
+                SightLight.color = Color.white;
 
                 //Debug.Log("Hit");
             }
@@ -173,22 +179,26 @@ public class WallEnemy : MonoBehaviour
             //Checks the distacne between the enemy and the player
             float HitDis = HitData.distance;
 
+            SightLight.color = Color.red;
+
             Guard.SetDestination(Player.position);
 
-            if (HitDis <= AttackRange)
-            {
-                if (CanAttack == true)
-                {
-                    StartCoroutine(HitPlayer());
-                    //print("Ghost");
-                }
-            }
+            //if (HitDis <= AttackRange)
+            //{
+            //    if (CanAttack == true)
+            //    {
+            //        StartCoroutine(HitPlayer());
+            //        //print("Ghost");
+            //    }
+            //}
         }
         else
         {
-            if (DestructionPath == true)
+
+            if (DestructionPath == true && Wall != null)
             {
                 Guard.SetDestination(Wall.transform.position);
+                SightLight.color = Color.blue;
             }
             else
             {
@@ -196,6 +206,7 @@ public class WallEnemy : MonoBehaviour
             }
             if (PlayerSeen == false)
             {
+                SightLight.color = Color.white;
                 Guard.SetDestination(PatrolTarget);
             }
         }
