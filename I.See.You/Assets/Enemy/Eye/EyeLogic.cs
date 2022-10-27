@@ -24,6 +24,7 @@ public class EyeLogic : MonoBehaviour
     private Enemy EyeTrig;           //Sets if the player is in sight or not to the eye.
     private WallEnemy WallTrig;
     public Light EyeLight;
+
     RaycastHit HitData;             //Reference Data from where the Raycast hits.
 
     // Start is called before the first frame update
