@@ -20,8 +20,8 @@ public class UISkillScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(Player.GetComponent<RotationSkillCounter>().RotCounter);
+        //print(Player.GetComponent<RotationSkillCounter>().RotCounter);
         GetComponent<Text>().text = Player.GetComponent<RotationSkillCounter>().RotCounter.ToString();
-        print(Player.GetComponent<RotationSkillCounter>().RotCounter);
+        //print(Player.GetComponent<RotationSkillCounter>().RotCounter);
     }
 }
