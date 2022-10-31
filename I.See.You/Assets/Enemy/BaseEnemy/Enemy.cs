@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
 
     private GameObject Chara;       //Reference to the player.
 
-    public Light SightLight;
+    //public Light SightLight;
 
     public GameObject[] PatrolPoints;
 
@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
             if (tag == "Player")
             {
                 PlayerSeen = true;
-                SightLight.color = Color.red;
+                //SightLight.color = Color.red;
 
                 Guard.SetDestination(Player.position);
 
@@ -120,7 +120,7 @@ public class Enemy : MonoBehaviour
                 PlayerSeen = false;
                 if (EyeTrig == false)
                 {
-                    SightLight.color = Color.white;
+                    //SightLight.color = Color.white;
                     Guard.SetDestination(PatrolTarget);
                 }
 
@@ -134,7 +134,7 @@ public class Enemy : MonoBehaviour
 
             if(EyeTrig == false)
             {
-                SightLight.color = Color.white;
+                //SightLight.color = Color.white;
                 Guard.SetDestination(PatrolTarget);
 
 
@@ -147,7 +147,7 @@ public class Enemy : MonoBehaviour
         if(EyeTrig == true)
         {
 
-            SightLight.color = Color.red;
+            //SightLight.color = Color.red;
             //Debug.Log(PlayerSeen);
             //Casts a Raycast to see if the player is in sight.
             Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10);
