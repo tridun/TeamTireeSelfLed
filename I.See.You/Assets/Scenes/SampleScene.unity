@@ -270,26 +270,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8621712373835725465, guid: eda89fd4d73f11f46a962f8d24d36ffc, type: 3}
   m_PrefabInstance: {fileID: 8621712374067267047}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &603194380 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7376662902581182013, guid: edc04a586f1c4f945b32e40318ecab28, type: 3}
-  m_PrefabInstance: {fileID: 7376662902095825498}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &603194388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603194380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b97568b05a6961d4980c1a7dd4ca8be5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RotCounter: 3
-  MaxCounter: 3
-  Recharge: 4
 --- !u!1 &728891612 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3905457947780318830, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}

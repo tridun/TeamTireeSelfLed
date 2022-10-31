@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7376662902581182007}
   - component: {fileID: 7376662902581182002}
   - component: {fileID: -5559232679768043642}
+  - component: {fileID: 603194388}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -153,6 +154,21 @@ MonoBehaviour:
   SpeedBoost: 2
   PlayerMove: {fileID: 0}
   Bar: {fileID: 0}
+--- !u!114 &603194388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376662902581182013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97568b05a6961d4980c1a7dd4ca8be5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotCounter: 3
+  MaxCounter: 3
+  Recharge: 4
 --- !u!1 &7376662903020087083
 GameObject:
   m_ObjectHideFlags: 0
