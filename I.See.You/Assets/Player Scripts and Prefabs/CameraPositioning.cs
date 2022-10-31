@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraPositioning : MonoBehaviour
 {
     private bool Triggered = false;     //Allows for control on when the camera moves, as tro not allow for issues.
-    public float ChangeTime = 0.1f;       //Sets Time between activation of camera change
+    public float ChangeTime = 0.25f;       //Sets Time between activation of camera change
     private float Position = 1f;
 
     Animator Anim;                      //Sets Animation Variable
