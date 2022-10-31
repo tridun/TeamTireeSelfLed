@@ -15,6 +15,7 @@ TagManager:
   - SecurityKey
   - RotationBlocks
   - Wall
+  - Paused
   layers:
   - Default
   - TransparentFX

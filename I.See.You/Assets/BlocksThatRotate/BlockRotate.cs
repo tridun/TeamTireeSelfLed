@@ -5,7 +5,9 @@ using UnityEngine;
 public class BlockRotate : MonoBehaviour    
 {
     public GameObject Block;            //References the block in question
+    private GameObject Player;
     public GameObject[] RotBlocksAttached;
+
 
     private Quaternion BlockRot;
 
@@ -29,13 +31,14 @@ public class BlockRotate : MonoBehaviour
         BlockRot = transform.rotation;
         TurningRot = transform.rotation.eulerAngles.y;
         //print(TurningRot);
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     //Checks if the mouse cursor is hovering over the object.
     private void OnMouseOver()
     {
         //Checks if the left mouse button is pressed.
-        if (Input.GetMouseButton(0) && Triggered == false && LimitLeft > 0 && LimitLeft < (MaxLeft+1))
+        if (Input.GetMouseButton(0) && Triggered == false && LimitLeft > 0 && LimitLeft < (MaxLeft+1) && Player.GetComponent<RotationSkillCounter>().RotCounter > 0)
         {
             Triggered = true;
             TurningLeft = true;
@@ -57,7 +60,7 @@ public class BlockRotate : MonoBehaviour
         }
 
         //Checks if the Right mouse button is pressed.
-        if (Input.GetMouseButton(1) && Triggered == false && LimitRight > 0 && LimitRight < (MaxRight + 1))
+        if (Input.GetMouseButton(1) && Triggered == false && LimitRight > 0 && LimitRight < (MaxRight + 1) && Player.GetComponent<RotationSkillCounter>().RotCounter > 0)
         {
             Triggered = true;
             TurningRight = true;
@@ -91,6 +94,10 @@ public class BlockRotate : MonoBehaviour
             {
                 I.GetComponent<BlockRotate>().TurningLeft = true;
             }
+            StopCoroutine(Player.GetComponent<RotationSkillCounter>().RotSkill());
+            Player.GetComponent<RotationSkillCounter>().RotCounter = Player.GetComponent<RotationSkillCounter>().RotCounter - 1;
+            StartCoroutine(Player.GetComponent<RotationSkillCounter>().RotSkill());
+
         }
         if (TurningRight == true)
         {
@@ -101,15 +108,18 @@ public class BlockRotate : MonoBehaviour
             {
                 I.GetComponent<BlockRotate>().TurningRight = true;
             }
+            StopCoroutine(Player.GetComponent<RotationSkillCounter>().RotSkill());
+            Player.GetComponent<RotationSkillCounter>().RotCounter = Player.GetComponent<RotationSkillCounter>().RotCounter - 1;
+            StartCoroutine(Player.GetComponent<RotationSkillCounter>().RotSkill());
         }
     }
 
     IEnumerator LeftRotate()
     {
+        
         ////Below is an alternative way to rotate the block.
         //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime);
-
-
+        
         //print(BlockRot.y);
 
         Block.transform.Rotate(0, -90, 0); //A shap rotation of the block.
@@ -125,9 +135,11 @@ public class BlockRotate : MonoBehaviour
 
     IEnumerator RightRotate()
     {
+
+
+
         ////Below is an alternative way to rotate the block.
         //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
-
 
         //print(BlockRot.y);
 
