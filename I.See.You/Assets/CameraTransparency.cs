@@ -40,7 +40,7 @@ public class CameraTransparency : MonoBehaviour
 
 
 
-        if (HitData.collider.tag == "Wall" || HitData.collider.tag == "DestructibleObject")
+        if (HitData.collider.tag == "Wall" || HitData.collider.tag == "DestructibleObject" || HitData.collider.tag == "RotationBlocks")
         {
             Wall = HitData.transform.gameObject;
 
