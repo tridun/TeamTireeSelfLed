@@ -56,6 +56,15 @@ public class EyeLogic : MonoBehaviour
             //If the tag is "Player", begins to chase.
             if (Tag == "Player")
             {
+                if (PlayerSeen == false)
+                {
+                    float Tri = Time.deltaTime * 3f;
+
+                    EyeLight.color = Color.Lerp(Color.red, Color.white, Tri);
+                }
+
+
+
                 PlayerSeen = true; //For Another Script's Logic. True if the player is in sight of the eye.
                 if (Firing == false)
                 {
@@ -64,7 +73,6 @@ public class EyeLogic : MonoBehaviour
                 }
 
                 
-                EyeLight.color = Color.red;
 
                 foreach (var I in Guard)
                 {
@@ -83,7 +91,7 @@ public class EyeLogic : MonoBehaviour
             else //Ensures guards don't follow the player's location when not in sight.
             {
                 PlayerSeen = false; //For Another Script's Logic
-                EyeLight.color = Color.white;
+                EyeLight.color = Color.Lerp(Color.red, Color.white, 5f);
                 foreach (var I in Guard)
                 {
                     EyeTrig = I.GetComponent<Enemy>();
@@ -104,7 +112,7 @@ public class EyeLogic : MonoBehaviour
         else //Ensures guards don't follow the player's location when not in sight.
         {
             PlayerSeen = false;
-            EyeLight.color = Color.white;
+            EyeLight.color = Color.Lerp(Color.red, Color.white, 5f);
             foreach (var I in WallGuard)
             {
                 WallTrig = I.GetComponent<WallEnemy>();
