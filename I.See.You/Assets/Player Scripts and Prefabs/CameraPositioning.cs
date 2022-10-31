@@ -6,6 +6,7 @@ public class CameraPositioning : MonoBehaviour
 {
     private bool Triggered = false;     //Allows for control on when the camera moves, as tro not allow for issues.
     public float ChangeTime = 0.1f;       //Sets Time between activation of camera change
+    private float Position = 1f;
 
     Animator Anim;                      //Sets Animation Variable
 
@@ -18,19 +19,19 @@ public class CameraPositioning : MonoBehaviour
     void Update()
     {
         //Sets camera into position 2 when the number 2 is pressed. Not on the NumPad.
-        if (Input.GetKeyDown(KeyCode.Alpha1) && Triggered == false)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Triggered == false && Position != 1)
         {
             StartCoroutine(Position1());
         }
 
         //Sets camera into position 2 when the number 1 is pressed. Not on the NumPad.
-        if (Input.GetKeyDown(KeyCode.Alpha2) && Triggered == false)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && Triggered == false && Position != 2)
         {
             StartCoroutine(Position2());
         }
 
         //Sets camera into position 2 when the number 2 is pressed. Not on the NumPad.
-        if (Input.GetKeyDown(KeyCode.Alpha3) && Triggered == false)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && Triggered == false && Position != 3)
         {
             StartCoroutine(Position3());
             print("hit");
@@ -45,6 +46,7 @@ public class CameraPositioning : MonoBehaviour
         //Checks if the routine has been triggered, stops repeated input.
         Triggered = true;
         yield return new WaitForSeconds(ChangeTime);
+        Position = 1;
         Triggered = false;
     }
 
@@ -55,6 +57,7 @@ public class CameraPositioning : MonoBehaviour
         //Checks if the routine has been triggered, stops repeated input.
         Triggered = true;
         yield return new WaitForSeconds(ChangeTime);
+        Position = 2;
         Triggered = false;
     }
 
@@ -66,6 +69,7 @@ public class CameraPositioning : MonoBehaviour
         //Checks if the routine has been triggered, stops repeated input.
         Triggered = true;
         yield return new WaitForSeconds(ChangeTime);
+        Position = 3;
         Triggered = false;
     }
 
