@@ -134,9 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af9f1375e06eab478f0808348ab12d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PatrolPoints: []
   Triggered: 0
   EyeTrig: 0
+  RandomPath: 0
   AttackRange: 1
+  Damage: 1
 --- !u!65 &8206353898292734658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -148,8 +151,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 1, z: 7}
-  m_Center: {x: 0, y: 0, z: 4}
+  m_Size: {x: 9, y: 1, z: 20}
+  m_Center: {x: 0, y: 0, z: 9.92}
 --- !u!1 &8206353898307297472
 GameObject:
   m_ObjectHideFlags: 0
