@@ -90,12 +90,13 @@ public class Enemy : MonoBehaviour
         {
             //Casts a Raycast to see if the player is in sight.
             Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10);
-
-            //Checks what tag the collided object is.
-            string tag = HitData.collider.tag;
-
-            //Checks the distacne between the enemy and the player
-            float HitDis = HitData.distance;
+            if (HitData.collider.tag != null)
+            {
+                //Checks what tag the collided object is.
+                string tag = HitData.collider.tag;
+            }
+                //Checks the distacne between the enemy and the player
+                float HitDis = HitData.distance;
 
             //If the tag is "Player", begins to chase.
             if (tag == "Player")
@@ -180,27 +181,27 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        //If Player enters trigger box, activate.
-        if (other.gameObject.tag == "Player")
-        {
-            Triggered = true;
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    //If Player enters trigger box, activate.
+    //    if (other.gameObject.tag == "Player")
+    //    {
+    //        Triggered = true;
 
-        }
+    //    }
         
-    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        //If Player leaves trigger box, deactivate.
-        if (other.gameObject.tag == "Player")
-        {
-            Triggered = false;
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    //If Player leaves trigger box, deactivate.
+    //    if (other.gameObject.tag == "Player")
+    //    {
+    //        Triggered = false;
 
-        }
+    //    }
         
-    }
+    //}
 
 //Sets index to next one.
     void Next()
