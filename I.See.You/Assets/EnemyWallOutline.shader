@@ -147,7 +147,7 @@ Shader "Unlit/EnemyWallOutline"
         //        SetTexture[_MainTex]{ combine texture }
         //            }
 
-                    //Pass for Texture
+        //Pass for Texture
         Pass
         {
                 Tags

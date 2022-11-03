@@ -6,6 +6,7 @@ public class EyeMovement : MonoBehaviour
 {
 
     public GameObject[] Points;    //The array of the waypoints.
+
     private GameObject Player;
     public GameObject EyeSight;
 

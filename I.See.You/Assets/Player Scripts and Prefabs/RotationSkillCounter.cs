@@ -23,9 +23,16 @@ public class RotationSkillCounter : MonoBehaviour
     {
         if (RotCounter < MaxCounter && Check == true)
         {
-            print("Hit");
-            RotCounter++;
+            StopCoroutine(RotSkill());
             Check = false;
+            //print("Hit");
+            RotCounter++;
+            
+            if (RotCounter < MaxCounter)
+            {
+                
+                StartCoroutine(RotSkill());
+            }
         }
     }
 

@@ -8,18 +8,24 @@ public class CameraTransparency : MonoBehaviour
     //public GameObject Wall2;
     //
     private GameObject Player;
-    private GameObject Wall;
+    public GameObject Wall;
     private GameObject PrevWall;
+    //private GameObject WallCheck;
 
-    public Material[] EnemyChange;
+    //private GameObject[] AttachedWalls; 
+
+    public Material TranMat;
+    private Material OldMat;
 
     public float TransparencyValue = 0.5f;
 
     private bool WallReset = false;
+    private bool MatChange = false;
+    //private bool WallChange = false;
 
 
     //public CapsuleCollider Object;
-    RaycastHit HitData;             //Reference Data from where the Raycast hits.
+    public RaycastHit HitData;             //Reference Data from where the Raycast hits.
 
 
     private void Start()
@@ -35,26 +41,42 @@ public class CameraTransparency : MonoBehaviour
         if (HitData.transform.gameObject != Wall)
         {
             PrevWall = Wall;
+            Wall = null;
             WallReset = true;
+            MatChange = true;
+            //WallChange = false;
+        }
+
+        if (WallReset == true && PrevWall != null)
+        {
+            PrevWall.GetComponent<MeshRenderer>().material = OldMat;
+            WallReset = false;
         }
 
 
 
         if (HitData.collider.tag == "Wall" || HitData.collider.tag == "DestructibleObject" || HitData.collider.tag == "RotationBlocks")
         {
+            //if (WallCheck != HitData.transform.gameObject)
+            //{
+            //    WallCheck = HitData.transform.gameObject;
+            //    WallChange = true;
+                
+            //}
             Wall = HitData.transform.gameObject;
+            if (MatChange == true)
+            {
+                OldMat = Wall.GetComponent<MeshRenderer>().material;
+                MatChange = false;
+            }
 
             var WallColors = Wall.GetComponent<MeshRenderer>();
-            WallColors.material = EnemyChange[1];
+            WallColors.material = TranMat;
 
             WallColors.material.color = new Color(WallColors.material.color.r, WallColors.material.color.g, WallColors.material.color.b, TransparencyValue);
+            //WallChange = true;
         }
 
-        if (WallReset == true && PrevWall!= null)
-        {
-            PrevWall.GetComponent<MeshRenderer>().material = EnemyChange[0];
-            WallReset = false;
-        }
 
     }
 }
