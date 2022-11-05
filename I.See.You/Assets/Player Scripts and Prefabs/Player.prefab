@@ -299,7 +299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01704274458722e4ea621e176f307b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyChange:
-  - {fileID: 2100000, guid: 36253329156cd044a937b2789dce4bd0, type: 2}
-  - {fileID: 2100000, guid: 8c9da0aa946534545a704aa57fed4e26, type: 2}
+  Wall: {fileID: 0}
+  TranMat: {fileID: 2100000, guid: b602c7b0876cba54da8a5fd1495af29d, type: 2}
   TransparencyValue: 0.5

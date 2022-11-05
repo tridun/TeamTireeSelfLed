@@ -19,8 +19,8 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            //print("Pause");
-            if(Time.timeScale == 1)
+            print("Pause");
+            if (Time.timeScale == 1)
             {
                 Time.timeScale = 0;
                 Pause();

@@ -11,9 +11,12 @@ public class PlayerHealth : MonoBehaviour
 
     private GameObject Player;
 
+    private GameObject[] Death;
+
     public Movement PlayerMove;
 
     private bool Hurt = false;
+    public bool DeathStateAllowed = false;
 
     public HealthUI Bar;
 
@@ -21,8 +24,10 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        Death = GameObject.FindGameObjectsWithTag("DeathScreen");
         Health = MaxHealth;
         Bar.MAXHealth(MaxHealth);
+        Base();
     }
 
     // Update is called once per frame
@@ -43,6 +48,12 @@ public class PlayerHealth : MonoBehaviour
             Health = Health - Hit;
             Bar.SliderValue(Health);
         }
+
+        if (Health == 0 && DeathStateAllowed == true)
+        {
+            Dead();
+        }
+
     }
 
     IEnumerator Invulnerable()
@@ -51,6 +62,23 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(InvTimer);
         Hurt = false;
         Player.GetComponent<Movement>().Invulnerable = false;
+    }
+
+    public void Base()
+    {
+        foreach (var i in Death)
+        {
+            i.SetActive(false);
+        }
+    }
+
+    private void Dead()
+    {
+        foreach (var i in Death)
+        {
+            i.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 
 }
