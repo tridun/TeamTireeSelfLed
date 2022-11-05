@@ -17,6 +17,7 @@ TagManager:
   - Wall
   - Paused
   - EndScreen
+  - DeathScreen
   layers:
   - Default
   - TransparentFX
