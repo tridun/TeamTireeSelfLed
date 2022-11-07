@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class SecurityDoorScript : MonoBehaviour
 {
-    private bool KeyCollected = false;
+    public GameObject[] Keys;
+
+    private float Control;
+
+    //private bool KeyCollected = false;
     private bool Range = false;
 
     // Update is called once per frame
     void Update()
     {
-        if(Range == true && Input.GetKeyDown(KeyCode.Q) && KeyCollected == true)
+        if(Range == true && Input.GetKeyDown(KeyCode.Q) && Control == 0)
         {
             Destroy(gameObject);
         }
@@ -24,6 +28,17 @@ public class SecurityDoorScript : MonoBehaviour
             print("Door");
             Range = true;
         }
+
+        Control = Keys.Length;
+        foreach (var i in Keys)
+        {
+            if (i == null)
+            {
+                Control--;
+            }
+        }
+
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -36,10 +51,10 @@ public class SecurityDoorScript : MonoBehaviour
     }
 
 
-    public void KeyFound()
-    {
-        KeyCollected = true;
-    }
+    //public void KeyFound()
+    //{
+    //    KeyCollected = true;
+    //}
 
 
 

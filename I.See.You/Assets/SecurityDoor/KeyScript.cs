@@ -17,7 +17,7 @@ public class KeyScript : MonoBehaviour
         {
             Scripts = SecurityDoor.GetComponent<SecurityDoorScript>();
 
-            Scripts.KeyFound();
+            //Scripts.KeyFound();
 
 
             Destroy(gameObject);
