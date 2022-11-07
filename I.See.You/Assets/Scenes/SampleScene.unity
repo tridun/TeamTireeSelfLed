@@ -2909,6 +2909,10 @@ PrefabInstance:
       propertyPath: Bar
       value: 
       objectReference: {fileID: 749839696}
+    - target: {fileID: -5559232679768043642, guid: edc04a586f1c4f945b32e40318ecab28, type: 3}
+      propertyPath: DeathStateAllowed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7376662902581182006, guid: edc04a586f1c4f945b32e40318ecab28, type: 3}
       propertyPath: m_RootOrder
       value: 3

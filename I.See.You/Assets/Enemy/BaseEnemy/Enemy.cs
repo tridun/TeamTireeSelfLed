@@ -90,11 +90,11 @@ public class Enemy : MonoBehaviour
         {
             //Casts a Raycast to see if the player is in sight.
             Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10);
-            if (HitData.collider.tag != null)
-            {
+            //if (HitData.collider.tag != null)
+            //{
                 //Checks what tag the collided object is.
                 string tag = HitData.collider.tag;
-            }
+            //}
                 //Checks the distacne between the enemy and the player
                 float HitDis = HitData.distance;
 
