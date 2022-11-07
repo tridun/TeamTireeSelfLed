@@ -38,7 +38,8 @@ public class PlayerDetection : MonoBehaviour
         //If Player enters trigger box, activate.
         if (other.gameObject.tag == "Player")
         {
-            Guard.GetComponent<Enemy>().Triggered = true;
+            print("hit");
+            Guard.GetComponent<Enemy>().Triggered = false;
 
         }
 
