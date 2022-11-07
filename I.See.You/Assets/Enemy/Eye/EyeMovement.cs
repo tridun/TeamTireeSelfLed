@@ -15,6 +15,7 @@ public class EyeMovement : MonoBehaviour
 
     public float MovementSpeed = 2f;
 
+    private Quaternion ControlRot;
     private Quaternion ReturnRot;
 
     private int PointIndex = 0;     //Checks which waypoint the script should reference
@@ -37,7 +38,7 @@ public class EyeMovement : MonoBehaviour
         Return = transform.rotation.eulerAngles;
 
         ReturnRot = transform.rotation;
-        //Debug.Log(Return);
+        Debug.Log(ReturnRot);
     }
 
     // Update is called once per frame
@@ -53,7 +54,7 @@ public class EyeMovement : MonoBehaviour
         //Checks if the eye is at the chosen waypoint
         if (transform.position == ChosenPoint)
         {
-
+            Debug.Log(ReturnRot.eulerAngles.x);
 
             //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime)
 
@@ -71,12 +72,15 @@ public class EyeMovement : MonoBehaviour
                     if (Random.Range(0, 2) == 0)
                     {
                         Next();
-
-                        if (TurnBack == false)
+                    
+                    if (TurnBack == false)
                         {
-                            //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
-                            ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
-                        }
+
+                        //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
+                        ReturnRot = Quaternion.Euler(ReturnRot.eulerAngles.x, WayRot.RotLeft, ReturnRot.eulerAngles.z);
+                         //= new Quaternion(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
+
+                    }
                     }
                     else
                     {
@@ -84,8 +88,8 @@ public class EyeMovement : MonoBehaviour
 
                         if (TurnNext == false)
                         {
-                            ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotRight, ReturnRot.z);
-                        }
+                        ReturnRot = Quaternion.Euler(ReturnRot.eulerAngles.x, WayRot.RotRight, ReturnRot.eulerAngles.z);
+                    }
                     }
                 //}
             }
@@ -94,10 +98,10 @@ public class EyeMovement : MonoBehaviour
                 if (WayRot.StopAntiClockwise == true)
                 {
                     Back();
-
+                    Debug.Log(ReturnRot.x);
                     if (TurnNext == false)
                     {
-                        ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotRight, ReturnRot.z);
+                        ReturnRot = Quaternion.Euler(ReturnRot.eulerAngles.x, WayRot.RotRight, ReturnRot.eulerAngles.z);
                     }
 
 
@@ -109,12 +113,14 @@ public class EyeMovement : MonoBehaviour
                     if (TurnBack == false)
                     {
                         //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
-                        ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
+                        ReturnRot = Quaternion.Euler(ReturnRot.eulerAngles.x, WayRot.RotLeft, ReturnRot.eulerAngles.z);
                     }
 
 
                 }
             }
+
+            Debug.Log(ReturnRot);
         }
         //Debug.Log(Trig.Firing);
 
@@ -130,6 +136,7 @@ public class EyeMovement : MonoBehaviour
             if (Trig.Tag == "Player")
             {
                 Vector3 PlayerDir = Vector3.RotateTowards(transform.forward, AimPlayer, RotSpeed, 0.0f);
+
                 transform.rotation = Quaternion.LookRotation(PlayerDir);
             }
         }

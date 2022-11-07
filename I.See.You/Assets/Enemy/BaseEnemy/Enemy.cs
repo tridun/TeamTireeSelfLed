@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
                 if (Guard.remainingDistance <= 1)
                 {
@@ -83,20 +83,23 @@ public class Enemy : MonoBehaviour
                     }
                 }
 
-
+        
 
 
         if (Triggered == true)
         {
             //Casts a Raycast to see if the player is in sight.
-            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10);
+            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 50);
+            Debug.DrawRay(transform.position, Player.transform.position - transform.position);
+
             //if (HitData.collider.tag != null)
             //{
+                //print("hit");
                 //Checks what tag the collided object is.
                 string tag = HitData.collider.tag;
             //}
-                //Checks the distacne between the enemy and the player
-                float HitDis = HitData.distance;
+            //Checks the distacne between the enemy and the player
+            float HitDis = HitData.distance;
 
             //If the tag is "Player", begins to chase.
             if (tag == "Player")
@@ -151,13 +154,13 @@ public class Enemy : MonoBehaviour
             //SightLight.color = Color.red;
             //Debug.Log(PlayerSeen);
             //Casts a Raycast to see if the player is in sight.
-            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10);
+            //Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10);
 
             //Checks what tag the collided object is.
             //string tag = HitData.collider.tag;
 
             //Checks the distacne between the enemy and the player
-            float HitDis = HitData.distance;
+            //float HitDis = HitData.distance;
 
             Guard.SetDestination(Player.position);
 

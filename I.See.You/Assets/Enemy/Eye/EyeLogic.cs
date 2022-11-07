@@ -60,7 +60,7 @@ public class EyeLogic : MonoBehaviour
                 {
                     float Tri = Time.deltaTime * 3f;
 
-                    EyeLight.color = Color.Lerp(Color.red, Color.white, Tri);
+                    //EyeLight.color = Color.Lerp(Color.red, Color.white, Tri);
                 }
 
 
@@ -91,7 +91,7 @@ public class EyeLogic : MonoBehaviour
             else //Ensures guards don't follow the player's location when not in sight.
             {
                 PlayerSeen = false; //For Another Script's Logic
-                EyeLight.color = Color.Lerp(Color.red, Color.white, 5f);
+                //EyeLight.color = Color.Lerp(Color.red, Color.white, 5f);
                 foreach (var I in Guard)
                 {
                     EyeTrig = I.GetComponent<Enemy>();
@@ -112,7 +112,7 @@ public class EyeLogic : MonoBehaviour
         else //Ensures guards don't follow the player's location when not in sight.
         {
             PlayerSeen = false;
-            EyeLight.color = Color.Lerp(Color.red, Color.white, 5f);
+            //EyeLight.color = Color.Lerp(Color.red, Color.white, 5f);
             foreach (var I in WallGuard)
             {
                 WallTrig = I.GetComponent<WallEnemy>();
