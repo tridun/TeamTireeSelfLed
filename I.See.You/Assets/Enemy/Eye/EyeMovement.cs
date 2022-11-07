@@ -71,51 +71,53 @@ public class EyeMovement : MonoBehaviour
                     //Randomly choses what the next point is in the list.
                     if (Random.Range(0, 2) == 0)
                     {
-                        Next();
+                        
                     
                     if (TurnBack == false)
-                        {
+                    {
 
                         //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
-                        ReturnRot = Quaternion.Euler(ReturnRot.eulerAngles.x, WayRot.RotLeft, ReturnRot.eulerAngles.z);
+                        ReturnRot = Quaternion.Euler(ReturnRot.eulerAngles.x, ReturnRot.eulerAngles.y - 90, ReturnRot.eulerAngles.z);
                          //= new Quaternion(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
 
                     }
-                    }
+                    Next();
+                }
                     else
                     {
-                        Back();
+                        
 
                         if (TurnNext == false)
                         {
-                        ReturnRot = Quaternion.Euler(ReturnRot.eulerAngles.x, WayRot.RotRight, ReturnRot.eulerAngles.z);
-                    }
-                    }
+                        ReturnRot = Quaternion.Euler(ReturnRot.eulerAngles.x, ReturnRot.eulerAngles.y + 90, ReturnRot.eulerAngles.z);
+                        }
+                    Back();
+                }
                 //}
             }
             else
             {
                 if (WayRot.StopAntiClockwise == true)
                 {
-                    Back();
+                    
                     Debug.Log(ReturnRot.x);
                     if (TurnNext == false)
                     {
-                        ReturnRot = Quaternion.Euler(ReturnRot.eulerAngles.x, WayRot.RotRight, ReturnRot.eulerAngles.z);
+                        ReturnRot = Quaternion.Euler(ReturnRot.eulerAngles.x, ReturnRot.eulerAngles.y + 90, ReturnRot.eulerAngles.z);
                     }
-
+                    Back();
 
                 }
                 if (WayRot.StopClockwise == true)
                 {
-                    Next();
+                    
 
                     if (TurnBack == false)
                     {
                         //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
-                        ReturnRot = Quaternion.Euler(ReturnRot.eulerAngles.x, WayRot.RotLeft, ReturnRot.eulerAngles.z);
+                        ReturnRot = Quaternion.Euler(ReturnRot.eulerAngles.x, ReturnRot.eulerAngles.y - 90, ReturnRot.eulerAngles.z);
                     }
-
+                    Next();
 
                 }
             }

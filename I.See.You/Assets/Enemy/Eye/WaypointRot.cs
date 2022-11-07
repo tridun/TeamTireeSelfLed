@@ -5,8 +5,8 @@ using UnityEngine;
 public class WaypointRot : MonoBehaviour
 {
 
-    public float RotLeft;
-    public float RotRight;
+    //public float RotLeft;
+    //public float RotRight;
     public bool StopAntiClockwise = false;
     public bool StopClockwise = false;
 
