@@ -5,6 +5,9 @@ using UnityEngine;
 public class WallConnect : MonoBehaviour
 {
     public GameObject[] Walls;
+
+    private Material[] BaseMat;
+
     private GameObject Camera;
     private bool ConnectChange = false;
     private Material ConMat;
@@ -15,11 +18,44 @@ public class WallConnect : MonoBehaviour
     {
         Camera = GameObject.FindGameObjectWithTag("MainCamera");
         ConMat = GetComponent<MeshRenderer>().material;
+
+        //foreach (I)
+
     }
+
+    //void FixedUpdate()
+    //{
+    //    if(Camera.GetComponent<CameraTransparency>().Wall == this.gameObject)
+    //    {
+    //        ConnectChange = false;
+    //    }
+    //    else
+    //    {
+    //        ConnectChange = true;
+    //    }
+
+    //    if (ConnectChange == true)
+    //    {
+
+    //    }
+
+
+    //}
+
+
+
+
+
 
     // Update is called once per frame
     void Update()
     {
+        //if
+
+
+
+
+
         if (Camera.GetComponent<CameraTransparency>().Wall != null)
         {
             //ConMat = GetComponent<MeshRenderer>().material;
@@ -31,15 +67,15 @@ public class WallConnect : MonoBehaviour
         }
         else if (this.gameObject != Camera.GetComponent<CameraTransparency>().HitData.transform.gameObject)
         {
-            if (ConnectChange == true)
-            {
+            //if (ConnectChange == true)
+            //{
                 print("Hit");
                 ConnectChange = false;
                 foreach (var I in Walls)
                 {
                     I.GetComponent<MeshRenderer>().material = ConMat;
                 }
-            }
+            //}
         }
     }
 }
