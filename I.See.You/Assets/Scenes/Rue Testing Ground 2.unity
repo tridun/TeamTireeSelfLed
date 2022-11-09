@@ -582,15 +582,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1907203697703201284, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1907203697703201284, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1907203697703201284, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2160890910334938297, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: EyeSight
@@ -634,7 +634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2160890910334938298, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -46
+      value: -13.6
       objectReference: {fileID: 0}
     - target: {fileID: 2160890910334938298, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_LocalRotation.w
@@ -670,7 +670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2160890910334938299, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2160890911541561198, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_LocalRotation.w
@@ -695,6 +695,26 @@ PrefabInstance:
     - target: {fileID: 2160890911541561198, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160890911799613927, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
+      propertyPath: m_Range
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160890911799613927, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
+      propertyPath: m_Intensity
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160890911799613927, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
+      propertyPath: m_SpotAngle
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160890911799613927, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160890911799613927, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2160890912076611550, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: EyeLight
@@ -1110,15 +1130,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1907203697703201284, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1907203697703201284, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1907203697703201284, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2160890910334938297, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: EyeSight
@@ -1198,7 +1218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2160890910334938299, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2160890911541561198, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1223,6 +1243,26 @@ PrefabInstance:
     - target: {fileID: 2160890911541561198, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160890911799613927, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
+      propertyPath: m_Range
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160890911799613927, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
+      propertyPath: m_Intensity
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160890911799613927, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
+      propertyPath: m_SpotAngle
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160890911799613927, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160890911799613927, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2160890912076611550, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: EyeLight
