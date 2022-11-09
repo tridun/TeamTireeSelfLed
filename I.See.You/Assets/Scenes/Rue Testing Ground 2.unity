@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.124368794, g: 0.07628726, b: 0.2821626, a: 1}
+  m_IndirectSpecularColor: {r: 0.12436823, g: 0.076286785, b: 0.28216147, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4008,6 +4008,10 @@ PrefabInstance:
       propertyPath: RotLeft
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
+      propertyPath: StopAntiClockwise
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
 --- !u!1 &664419573
@@ -7510,11 +7514,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
       propertyPath: StopClockwise
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
       propertyPath: StopAntiClockwise
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
@@ -12310,6 +12314,10 @@ PrefabInstance:
     - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
       propertyPath: RotLeft
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813182002417479971, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
+      propertyPath: StopClockwise
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
