@@ -7,6 +7,7 @@ using System;
 public class EyeLogic : MonoBehaviour
 {
     private GameObject Chara;       //Reference to the player.
+    public GameObject Projectile;
 
     private GameObject[] Guard;     //Array for the guard assets
     private GameObject[] WallGuard;
@@ -156,6 +157,13 @@ public class EyeLogic : MonoBehaviour
     {
 
         yield return new WaitForSeconds(FiringTime);
+
+        GameObject Laser = GameObject.Instantiate(Projectile, transform.position, transform.rotation) as GameObject;
+        Laser.GetComponent<LaserLogic>().SetTarget(HitData.point);
+
+        //GameObject.Destroy(Laser, 2F); 
+
+
         if (Tag == "Player")
         {
             print(Tag);
