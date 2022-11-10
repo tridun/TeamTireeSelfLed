@@ -45,7 +45,7 @@ public class EyeLogic : MonoBehaviour
         if (Triggered == true)
         {
             //Casts a Raycast to see if the player is in sight.
-            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 20);
+            Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 50);
             Debug.DrawRay(transform.position, Chara.transform.position - transform.position);
 
             //Checks what tag the collided object is.

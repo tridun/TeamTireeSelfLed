@@ -6,8 +6,8 @@ public class KeyScript : MonoBehaviour
 {
 
     public bool Range = false;
-    public GameObject SecurityDoor;
-    private SecurityDoorScript Scripts;
+    //public GameObject SecurityDoor;
+    //private SecurityDoorScript Scripts;
 
 
     private void Update()
@@ -15,7 +15,7 @@ public class KeyScript : MonoBehaviour
 
         if (Range == true)
         {
-            Scripts = SecurityDoor.GetComponent<SecurityDoorScript>();
+            //Scripts = SecurityDoor.GetComponent<SecurityDoorScript>();
 
             //Scripts.KeyFound();
 
@@ -27,10 +27,10 @@ public class KeyScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        print("Key");
         if (other.gameObject.tag == "Player")
         {
-            print("Key");
+            
             Range = true;
         }
     }
