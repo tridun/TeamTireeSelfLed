@@ -112,4 +112,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {x: 0, y: 0, z: 0}
   ColExp: {fileID: 169772270117777466, guid: 729940a8f718f27419616170c189083c, type: 3}
-  Speed: 100
+  Speed: 150
