@@ -6,11 +6,13 @@ public class WallConnect : MonoBehaviour
 {
     public GameObject[] Walls;
 
-    private Material[] BaseMat;
+    public List<Material> BaseMat;
 
     private GameObject Camera;
     private bool ConnectChange = false;
     private Material ConMat;
+
+    private int Index = 0;
 
 
     // Start is called before the first frame update
@@ -19,63 +21,45 @@ public class WallConnect : MonoBehaviour
         Camera = GameObject.FindGameObjectWithTag("MainCamera");
         ConMat = GetComponent<MeshRenderer>().material;
 
-        //foreach (I)
+        foreach (var I in Walls)
+        {
+            print(Index);
+            BaseMat.Add(I.GetComponent<MeshRenderer>().material);
+            Index++;
+            
+        }
 
     }
 
-    //void FixedUpdate()
-    //{
-    //    if(Camera.GetComponent<CameraTransparency>().Wall == this.gameObject)
-    //    {
-    //        ConnectChange = false;
-    //    }
-    //    else
-    //    {
-    //        ConnectChange = true;
-    //    }
-
-    //    if (ConnectChange == true)
-    //    {
-
-    //    }
-
-
-    //}
-
-
-
-
-
-
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //if
-
-
-
-
-
-        if (Camera.GetComponent<CameraTransparency>().Wall != null)
+        Index = 0;
+        if (Camera.GetComponent<CameraTransparency>().Wall == this.gameObject)
         {
-            //ConMat = GetComponent<MeshRenderer>().material;
-            ConnectChange = true;
+            ConnectChange = false;
             foreach (var I in Walls)
             {
                 I.GetComponent<MeshRenderer>().material = GetComponent<MeshRenderer>().material;
             }
         }
-        else if (this.gameObject != Camera.GetComponent<CameraTransparency>().HitData.transform.gameObject)
+        else
         {
-            //if (ConnectChange == true)
-            //{
-                print("Hit");
-                ConnectChange = false;
-                foreach (var I in Walls)
-                {
-                    I.GetComponent<MeshRenderer>().material = ConMat;
-                }
-            //}
+            ConnectChange = true;
         }
+
+        if (ConnectChange == true)
+        {
+            foreach (var I in Walls)
+            {
+                if(I != Camera.GetComponent<CameraTransparency>().Wall)
+                {
+                    I.GetComponent<MeshRenderer>().material = BaseMat[Index];
+                    print(BaseMat[Index]);
+                    Index++;
+                }
+            }
+        }
+
+
     }
 }

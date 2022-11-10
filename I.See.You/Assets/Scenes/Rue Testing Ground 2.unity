@@ -11442,6 +11442,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Walls:
   - {fileID: 1215146983}
+  - {fileID: 664419573}
+  BaseMat: []
 --- !u!1 &1600359509
 GameObject:
   m_ObjectHideFlags: 0
