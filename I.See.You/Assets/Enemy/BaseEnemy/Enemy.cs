@@ -94,9 +94,9 @@ public class Enemy : MonoBehaviour
 
             //if (HitData.collider.tag != null)
             //{
-                //print("hit");
-                //Checks what tag the collided object is.
-                string tag = HitData.collider.tag;
+            print("hit");
+            //Checks what tag the collided object is.
+            string tag = HitData.collider.tag;
             //}
             //Checks the distacne between the enemy and the player
             float HitDis = HitData.distance;
