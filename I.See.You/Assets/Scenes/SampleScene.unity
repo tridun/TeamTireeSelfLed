@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12062218, g: 0.07747551, b: 0.16600838, a: 1}
+  m_IndirectSpecularColor: {r: 0.120622, g: 0.07747532, b: 0.16600838, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2396,11 +2396,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536f7b2bf69ad6342bac39c12b68c7e5, type: 3}
---- !u!108 &2061933191 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 2160890911799613927, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
-  m_PrefabInstance: {fileID: 2160890910563735355}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2079536735 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2434063542510946565, guid: 311602f0334ca294da8d987535d5d903, type: 3}
@@ -2596,10 +2591,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1241989660643258558, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
-      propertyPath: m_TagString
-      value: Eye
-      objectReference: {fileID: 0}
     - target: {fileID: 2160890910334938297, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: Points.Array.data[0]
       value: 
@@ -2672,38 +2663,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Eye
       objectReference: {fileID: 0}
-    - target: {fileID: 2160890910850942740, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
-      propertyPath: m_TagString
-      value: Eye
-      objectReference: {fileID: 0}
-    - target: {fileID: 2160890911541561199, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
-      propertyPath: m_TagString
-      value: Eye
-      objectReference: {fileID: 0}
-    - target: {fileID: 2160890911799613921, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
-      propertyPath: m_TagString
-      value: Eye
-      objectReference: {fileID: 0}
-    - target: {fileID: 2160890911799613927, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
-      propertyPath: m_Intensity
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2160890912076611550, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: EyeTrig
       value: 
       objectReference: {fileID: 151166442}
     - target: {fileID: 2160890912076611550, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
-      propertyPath: EyeLight
-      value: 
-      objectReference: {fileID: 2061933191}
-    - target: {fileID: 2160890912076611550, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
       propertyPath: WallTrig
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 2160890912076611550, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
-      propertyPath: Projectile
-      value: 
-      objectReference: {fileID: 2111152257205376267, guid: a5669390f8512f04a9b090116f9c13aa, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 843e67c648d35e644bb8a0db6f1b4417, type: 3}
 --- !u!1001 &2186753251209335287

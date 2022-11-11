@@ -14,26 +14,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3613567641014311022, guid: ac65340c3a13d6540adeaddb6b3b2868, type: 3}
---- !u!114 &2160890912076611550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241989660643258558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ed6b03268867004f9da170b7d749b8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Projectile: {fileID: 0}
-  Triggered: 0
-  PlayerSeen: 0
-  Firing: 0
-  Tag: 
-  FiringTime: 2
-  Damage: 1
-  EyeLight: {fileID: 0}
 --- !u!82 &5074504932951860476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -130,6 +110,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2160890912076611550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241989660643258558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed6b03268867004f9da170b7d749b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Projectile: {fileID: 2111152257205376267, guid: a5669390f8512f04a9b090116f9c13aa, type: 3}
+  Triggered: 0
+  PlayerSeen: 0
+  Firing: 0
+  Tag: 
+  FiringTime: 2
+  Damage: 1
+  EyeLight: {fileID: 2160890911799613927}
 --- !u!1 &2160890910334938299
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 2160890910850942730}
   m_Layer: 2
   m_Name: Sphere (1)
-  m_TagString: Untagged
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 2160890911541561197}
   m_Layer: 2
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 2160890911799613927}
   m_Layer: 2
   m_Name: Spot Light
-  m_TagString: Untagged
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,7 +421,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 2000
+  m_Intensity: 40
   m_Range: 25
   m_SpotAngle: 62
   m_InnerSpotAngle: 17.3
@@ -548,7 +548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ac65340c3a13d6540adeaddb6b3b2868, type: 3}
       propertyPath: m_TagString
-      value: EyeSight
+      value: Eye
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac65340c3a13d6540adeaddb6b3b2868, type: 3}
