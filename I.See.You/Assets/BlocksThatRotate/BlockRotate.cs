@@ -8,12 +8,17 @@ public class BlockRotate : MonoBehaviour
     private GameObject Player;
     public GameObject[] RotBlocksAttached;
 
+    private AudioSource Rot;
+
+    private Quaternion TargetRot;
 
     private Quaternion BlockRot;
 
     private bool Triggered = false;     //Controls the input.
     private bool TurningLeft = false;
     private bool TurningRight = false;
+    private bool StartLeft = false;
+    private bool StartRight = false;
 
     public float RotateTime = 1f;     //Controls time between inputs.
     public float LimitRight = 1f;
@@ -32,6 +37,7 @@ public class BlockRotate : MonoBehaviour
         TurningRot = transform.rotation.eulerAngles.y;
         //print(TurningRot);
         Player = GameObject.FindGameObjectWithTag("Player");
+        Rot = GetComponent<AudioSource>();
     }
 
     //Checks if the mouse cursor is hovering over the object.
@@ -42,21 +48,18 @@ public class BlockRotate : MonoBehaviour
         {
             Triggered = true;
             TurningLeft = true;
-            Debug.Log("Left");
+            //Debug.Log("Left");
             LimitLeft = LimitLeft - 1;
             LimitRight = LimitRight + 1;
 
-            if (TurningRot == - 180)
-            {
-                TurningRot = 180 - 90;
-            }
-            else
-            {
-                TurningRot = TurningRot - 90;
-            }
+            StopCoroutine(Player.GetComponent<RotationSkillCounter>().RotSkill());
+            Player.GetComponent<RotationSkillCounter>().RotCounter = Player.GetComponent<RotationSkillCounter>().RotCounter - 1;
+            StartCoroutine(Player.GetComponent<RotationSkillCounter>().RotSkill());
+
+            Rot.Play();
 
             print(TurningRot);
-            BlockRot = Quaternion.Euler(BlockRot.x, TurningRot, BlockRot.z);
+            BlockRot = Quaternion.Euler(BlockRot.eulerAngles.x, TurningRot, BlockRot.eulerAngles.z);
         }
 
         //Checks if the Right mouse button is pressed.
@@ -64,23 +67,20 @@ public class BlockRotate : MonoBehaviour
         {
             Triggered = true;
             TurningRight = true;
-            Debug.Log("Right");
+            //Debug.Log("Right");
             LimitLeft = LimitLeft + 1;
             LimitRight = LimitRight - 1;
 
-            if (TurningRot == 180)
-            {
-                TurningRot = -180 + 90;
-            }
-            else
-            {
-                TurningRot = TurningRot + 90;
-            }
+            StopCoroutine(Player.GetComponent<RotationSkillCounter>().RotSkill());
+            Player.GetComponent<RotationSkillCounter>().RotCounter = Player.GetComponent<RotationSkillCounter>().RotCounter - 1;
+            StartCoroutine(Player.GetComponent<RotationSkillCounter>().RotSkill());
+
+            Rot.Play();
 
             print(TurningRot);
-            BlockRot = Quaternion.Euler(BlockRot.x, TurningRot, BlockRot.z);
+            BlockRot = Quaternion.Euler(BlockRot.eulerAngles.x, TurningRot, BlockRot.eulerAngles.z);
 
-            //BlockRot = Quaternion.Euler(BlockRot.x, (BlockRot.eulerAngles.y + 90), BlockRot.z);
+            //BlockRot = Quaternion.Euler(BlockRot.eulerAngles.x, (BlockRot.eulerAngles.y + 90), BlockRot.eulerAngles.z);
         }
     }
 
@@ -90,13 +90,13 @@ public class BlockRotate : MonoBehaviour
         {
             //Starts Coroutine for rotating the block to the left.
             StartCoroutine(LeftRotate());
+
+            
             foreach (var I in RotBlocksAttached)
             {
                 I.GetComponent<BlockRotate>().TurningLeft = true;
             }
-            StopCoroutine(Player.GetComponent<RotationSkillCounter>().RotSkill());
-            Player.GetComponent<RotationSkillCounter>().RotCounter = Player.GetComponent<RotationSkillCounter>().RotCounter - 1;
-            StartCoroutine(Player.GetComponent<RotationSkillCounter>().RotSkill());
+            
 
         }
         if (TurningRight == true)
@@ -104,25 +104,51 @@ public class BlockRotate : MonoBehaviour
             //Starts Coroutine for rotating the block to the right.
             StartCoroutine(RightRotate());
 
+            
             foreach (var I in RotBlocksAttached)
             {
                 I.GetComponent<BlockRotate>().TurningRight = true;
             }
-            StopCoroutine(Player.GetComponent<RotationSkillCounter>().RotSkill());
-            Player.GetComponent<RotationSkillCounter>().RotCounter = Player.GetComponent<RotationSkillCounter>().RotCounter - 1;
-            StartCoroutine(Player.GetComponent<RotationSkillCounter>().RotSkill());
         }
+
+        if (StartLeft == true)
+        {
+            TargetRot = Quaternion.Euler(transform.rotation.eulerAngles.x, TurningRot, transform.rotation.eulerAngles.z);
+            transform.rotation = Quaternion.Slerp(transform.rotation, TargetRot, 3.5f * Time.deltaTime);
+
+        }
+        else if(StartRight == true)
+        {
+            TargetRot = Quaternion.Euler(transform.rotation.eulerAngles.x, TurningRot, transform.rotation.eulerAngles.z);
+            transform.rotation = Quaternion.Slerp(transform.rotation, TargetRot, 3.5f * Time.deltaTime);
+        }
+
+
+
+
     }
 
     IEnumerator LeftRotate()
     {
-        
+
+        StartLeft = true;
+
         ////Below is an alternative way to rotate the block.
-        //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime);
-        
+
+        if (TurningRot == -180)
+        {
+            TurningRot = 180 - 90;
+        }
+        else
+        {
+            TurningRot = TurningRot - 90;
+        }
+
+
+
         //print(BlockRot.y);
 
-        Block.transform.Rotate(0, -90, 0); //A shap rotation of the block.
+        //Block.transform.Rotate(0, -90, 0); //A shap rotation of the block.
         //transform.rotation = Quaternion.Slerp(transform.rotation, BlockRot, RotateTime);
 
         TurningLeft = false;
@@ -130,65 +156,38 @@ public class BlockRotate : MonoBehaviour
 
         yield return new WaitForSeconds(RotateTime);
         Triggered = false;
+        StartLeft = false;
         
     }
 
     IEnumerator RightRotate()
     {
 
+        StartRight = true;
 
+        if (TurningRot == 180)
+        {
+            TurningRot = -180 + 90;
+        }
+        else
+        {
+            TurningRot = TurningRot + 90;
+        }
 
         ////Below is an alternative way to rotate the block.
-        //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
+
 
         //print(BlockRot.y);
 
-        Block.transform.Rotate(0, 90, 0); //A shap rotation of the block.
-                                          //transform.rotation = Quaternion.Slerp(transform.rotation, BlockRot, 6 * Time.deltaTime);
+        //Block.transform.Rotate(0, 90, 0); //A shap rotation of the block.
+        //transform.rotation = Quaternion.Slerp(transform.rotation, BlockRot, 6 * Time.deltaTime);
 
         TurningRight = false;
         //Checks if the routine has been triggered, stops repeated input.
 
         yield return new WaitForSeconds(RotateTime);
         Triggered = false;
+        StartRight = false;
         
-    }
-
-    IEnumerator LeftRotateOther()
-    {
-        ////Below is an alternative way to rotate the block.
-        //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime);
-
-
-        //print(BlockRot.y);
-
-        Block.transform.Rotate(0, -90, 0); //A shap rotation of the block.
-        //transform.rotation = Quaternion.Slerp(transform.rotation, BlockRot, RotateTime);
-
-        TurningLeft = false;
-        //Checks if the routine has been triggered, stops repeated input.
-
-        yield return new WaitForSeconds(RotateTime);
-        Triggered = false;
-
-    }
-
-    IEnumerator RightRotateOther()
-    {
-        ////Below is an alternative way to rotate the block.
-        //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime);
-
-
-        //print(BlockRot.y);
-
-        Block.transform.Rotate(0, 90, 0); //A shap rotation of the block.
-                                          //transform.rotation = Quaternion.Slerp(transform.rotation, BlockRot, 6 * Time.deltaTime);
-
-        TurningRight = false;
-        //Checks if the routine has been triggered, stops repeated input.
-
-        yield return new WaitForSeconds(RotateTime);
-        Triggered = false;
-
     }
 }

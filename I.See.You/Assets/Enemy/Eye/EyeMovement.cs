@@ -54,7 +54,7 @@ public class EyeMovement : MonoBehaviour
         //Checks if the eye is at the chosen waypoint
         if (transform.position == ChosenPoint)
         {
-            Debug.Log(ReturnRot.eulerAngles.x);
+            //Debug.Log(ReturnRot.eulerAngles.x);
 
             //Block.transform.rotation = Quaternion.Slerp(Block.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime)
 
@@ -122,7 +122,7 @@ public class EyeMovement : MonoBehaviour
                 }
             }
 
-            Debug.Log(ReturnRot);
+            //Debug.Log(ReturnRot);
         }
         //Debug.Log(Trig.Firing);
 

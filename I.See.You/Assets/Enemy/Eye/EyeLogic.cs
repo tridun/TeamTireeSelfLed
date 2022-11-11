@@ -12,6 +12,8 @@ public class EyeLogic : MonoBehaviour
     private GameObject[] Guard;     //Array for the guard assets
     private GameObject[] WallGuard;
 
+    private AudioSource Detected;
+
     public bool Triggered = false;  //Reference to if an object enters the sight of the enemy.
     public bool PlayerSeen = false;
     public bool Firing = false;
@@ -35,6 +37,7 @@ public class EyeLogic : MonoBehaviour
         Chara = GameObject.FindGameObjectWithTag("Player");
         Guard = GameObject.FindGameObjectsWithTag("Enemy");
         WallGuard = GameObject.FindGameObjectsWithTag("WallEnemy");
+        Detected = GetComponent<AudioSource>();
 
     }
 
@@ -60,6 +63,7 @@ public class EyeLogic : MonoBehaviour
                 if (PlayerSeen == false)
                 {
                     float Tri = Time.deltaTime * 3f;
+                    Detected.Play();
 
                     //EyeLight.color = Color.Lerp(Color.red, Color.white, Tri);
                 }
@@ -92,6 +96,8 @@ public class EyeLogic : MonoBehaviour
             else //Ensures guards don't follow the player's location when not in sight.
             {
                 PlayerSeen = false; //For Another Script's Logic
+                Detected.Stop();
+
                 //EyeLight.color = Color.Lerp(Color.red, Color.white, 5f);
                 foreach (var I in Guard)
                 {
@@ -113,6 +119,7 @@ public class EyeLogic : MonoBehaviour
         else //Ensures guards don't follow the player's location when not in sight.
         {
             PlayerSeen = false;
+            Tag = null;
             //EyeLight.color = Color.Lerp(Color.red, Color.white, 5f);
             foreach (var I in WallGuard)
             {
@@ -139,6 +146,7 @@ public class EyeLogic : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Triggered = true;
+            
         }
 
     }
@@ -149,6 +157,9 @@ public class EyeLogic : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Triggered = false;
+            PlayerSeen = false;
+            Detected.Stop();
+
         }
 
     }
