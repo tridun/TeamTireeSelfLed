@@ -60,14 +60,6 @@ public class EyeMovement : MonoBehaviour
 
             if (WayRot.StopAntiClockwise == false && WayRot.StopClockwise == false)
             {
-
-                
-                //if (TurnBack == false)
-                //{
-                //    //Return = new Vector3(Return.x, Return.y + WayRot.RotLeft, Return.z);
-                //    ReturnRot = Quaternion.Euler(ReturnRot.x, WayRot.RotLeft, ReturnRot.z);
-
-
                     //Randomly choses what the next point is in the list.
                     if (Random.Range(0, 2) == 0)
                     {
