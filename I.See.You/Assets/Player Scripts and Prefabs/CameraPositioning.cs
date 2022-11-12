@@ -12,7 +12,7 @@ public class CameraPositioning : MonoBehaviour
 
     void Start()
     {
-        Anim = gameObject.GetComponent<Animator>(); //Sets ANimation to be played.
+        Anim = gameObject.GetComponent<Animator>(); //Sets Animation to be played.
     }
 
     // Update is called once per frame

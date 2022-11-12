@@ -7,31 +7,41 @@ public class Enemy : MonoBehaviour
 {
     private NavMeshAgent Guard;     //Reference to the NavMesh used for the enemy movement.
 
+
     private Transform Player;       //Reference to the player's location.
 
+    public GameObject Form1;
+    public GameObject Form2;
     private GameObject Chara;       //Reference to the player.
+    public GameObject AttackSphere;
+    public GameObject ColExp;
 
     //public Light SightLight;
 
     public GameObject[] PatrolPoints;
 
     private Vector3 PatrolTarget;
+    private Vector3 BallBase;
+    private Vector3 BallHit;
 
 
     public bool Triggered = false;  //Reference to if an object enters the sight of the enemy. Public as it will be used by other scripts.
     private bool PlayerSeen = false;
     public bool EyeTrig = false;    //Reference for the Eye AI. If the Eye sees the player, this is called.
-
     public bool RandomPath = false;
     private bool PatrolRange = false;
+    private bool CanAttack = true;
+    private bool Hunt = false;
+    private bool Freeze = false;
 
     public float AttackRange = 1f;  //Reference to the attack range. Public for designing and tersting the range.
     private int Index = 0;
-    private bool CanAttack = true;
 
     public int Damage = 1;
 
     RaycastHit HitData;             //Reference Data from where the Raycast hits
+
+    public Animator Anim;
 
     // Start is called before the first frame update
     void Start()
@@ -40,9 +50,13 @@ public class Enemy : MonoBehaviour
         Chara = GameObject.FindGameObjectWithTag("Player");
         Player = Chara.transform;
         Guard = GetComponent<NavMeshAgent>();
+        Anim = Form2.GetComponent<Animator>(); //Sets Animation to be played.
+        
+        Form1.SetActive(true);
+        Form2.SetActive(false);
+
 
         Index = 0;
-        //SetDestination();
 
         PatrolTarget = new Vector3(PatrolPoints[Index].transform.position.x, transform.position.y, PatrolPoints[Index].transform.position.z);
     }
@@ -51,40 +65,31 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-                if (Guard.remainingDistance <= 1)
-                {
-                    //Index = Random.Range(0, PatrolPoints.Length - 1);
+        if (Guard.remainingDistance <= 1)
+        {
+            if (PatrolRange == false)
+            {
 
-                    if (PatrolRange == false)
+                if (RandomPath == true)
+                {
+                    //print(Index);
+                    if (Random.Range(0, 2) == 0)
+                    {
+                         Next();
+                    }
+                    else
                     {
 
-                        if (RandomPath == true)
-                        {
-                            //print(Index);
-                            if (Random.Range(0, 2) == 0)
-                            {
-                                Next();
-                            }
-                            else
-                            {
-
-                                Back();
-
-                            }
-                        }
-                        else
-                        {
-                            Next();
-
-                        }
-
-                        //StartCoroutine(GaurdReached());
+                         Back();
 
                     }
                 }
-
-        
-
+                else
+                {
+                    Next();
+                }
+            }
+        }
 
         if (Triggered == true)
         {
@@ -94,7 +99,7 @@ public class Enemy : MonoBehaviour
 
             //if (HitData.collider.tag != null)
             //{
-            print("hit");
+            //print("hit");
             //Checks what tag the collided object is.
             string tag = HitData.collider.tag;
             //}
@@ -104,30 +109,47 @@ public class Enemy : MonoBehaviour
             //If the tag is "Player", begins to chase.
             if (tag == "Player")
             {
+                if (PlayerSeen == false)
+                {
+                    print("AlertStart");
+                    StopCoroutine(PlayerGone());
+                    StartCoroutine(PlayerSpotted());
+                }
                 PlayerSeen = true;
                 //SightLight.color = Color.red;
 
-                Guard.SetDestination(Player.position);
+                if (Freeze == false)
+                {
+                    Guard.stoppingDistance = 1.5f;
+                    Guard.SetDestination(Player.position);
+                }
 
                 if (HitDis <= AttackRange)
                 {
                     if (CanAttack == true)
                     {
+                        //Anim.SetTrigger("Attack");
                         StartCoroutine(HitPlayer());
-                        print("Ghost");
+                        //print("Ghost");
                     }
                 }
 
             }
             else
             {
-                PlayerSeen = false;
+                
                 if (EyeTrig == false)
                 {
+                    if (PlayerSeen == true)
+                    {
+                        print("calm while trig");
+                        StartCoroutine(PlayerGone());
+                    }
                     //SightLight.color = Color.white;
-                    Guard.SetDestination(PatrolTarget);
+                        Guard.stoppingDistance = 0f;
+                        Guard.SetDestination(PatrolTarget);
                 }
-
+                PlayerSeen = false;
             }
 
             //If the player is in range, this is the attack logic.
@@ -136,10 +158,19 @@ public class Enemy : MonoBehaviour
         else
         {
 
-            if(EyeTrig == false)
+            if(EyeTrig == false && Hunt == false)
             {
+                if (PlayerSeen == true)
+                {
+                    print("calm Trig");
+                    StartCoroutine(PlayerGone());
+                }
+                PlayerSeen = false;
                 //SightLight.color = Color.white;
-                Guard.SetDestination(PatrolTarget);
+                    Guard.stoppingDistance = 0f;
+                    Guard.SetDestination(PatrolTarget);
+                
+                
 
 
 
@@ -150,61 +181,88 @@ public class Enemy : MonoBehaviour
 
         if(EyeTrig == true)
         {
-
-            //SightLight.color = Color.red;
-            //Debug.Log(PlayerSeen);
-            //Casts a Raycast to see if the player is in sight.
-            //Physics.Raycast(transform.position, Chara.transform.position - transform.position, out HitData, 10);
-
-            //Checks what tag the collided object is.
-            //string tag = HitData.collider.tag;
-
-            //Checks the distacne between the enemy and the player
-            //float HitDis = HitData.distance;
-
-            Guard.SetDestination(Player.position);
-
-            //if (HitDis <= AttackRange)
-            //{
-            //    if (CanAttack == true)
-            //    {
-            //        StartCoroutine(HitPlayer());
-            //        print("Ghost");
-            //    }
-            //}
+            if (PlayerSeen == false)
+            {
+                print("Eye");
+                StopCoroutine(PlayerGone());
+                StartCoroutine(PlayerSpotted());
+            }
+            PlayerSeen = true;
+                Guard.stoppingDistance = 1.5f;
+                Guard.SetDestination(Player.position);
         }
         else
         {
 
+            if (PlayerSeen == false && Hunt == false)
+            {
+                if (PlayerSeen == true)
+                {
+                    print("calm EYETrig");
+                    StartCoroutine(PlayerGone());
+                }
+
+                //SightLight.color = Color.white;
+                Guard.stoppingDistance = 0f;
+                    Guard.SetDestination(PatrolTarget);
+            }
+        }
+
+        if (Hunt == true)
+        {
             if (PlayerSeen == false)
             {
-                Guard.SetDestination(PatrolTarget);
+                StopCoroutine(PlayerGone());
+                StartCoroutine(PlayerSpotted());
             }
+            PlayerSeen = true;
+                Guard.stoppingDistance = 1.5f;
+                Guard.SetDestination(Player.position);
+        }
+
+
+
+    }
+
+    IEnumerator PlayerSpotted()
+    {
+        Anim.SetTrigger("Reset");
+        Form1.SetActive(false);
+        Form2.SetActive(true);
+
+        Guard.isStopped = true;
+        yield return new WaitForSeconds(1f);
+        Guard.isStopped = false;
+        Anim.SetTrigger("Chasing");
+        Hunt = true;
+
+        yield return new WaitForSeconds(3f);
+        Hunt = false;
+    }
+
+    IEnumerator PlayerGone()
+    {
+        if (Hunt == false)
+        {
+
+            Anim.SetTrigger("Calm");
+            Guard.isStopped = true;
+
+            print("calm");
+
+            yield return new WaitForSeconds(1f);
+            Guard.isStopped = false;
+            if (PlayerSeen == false)
+            {
+                Form1.SetActive(true);
+                Form2.SetActive(false);
+            }
+
         }
     }
 
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    //If Player enters trigger box, activate.
-    //    if (other.gameObject.tag == "Player")
-    //    {
-    //        Triggered = true;
 
-    //    }
-        
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    //If Player leaves trigger box, deactivate.
-    //    if (other.gameObject.tag == "Player")
-    //    {
-    //        Triggered = false;
-
-    //    }
-        
-    //}
 
 //Sets index to next one.
     void Next()
@@ -231,10 +289,24 @@ public class Enemy : MonoBehaviour
 
     IEnumerator HitPlayer()
     {
+        BallBase = transform.position;
         CanAttack = false;
-        Chara.GetComponent<PlayerHealth>().DamagePlayer(Damage);
-        yield return new WaitForSeconds(1f);
-        CanAttack = true;
+        Anim.SetTrigger("Attack");
+        Guard.isStopped = true;
+
+        yield return new WaitForSeconds(1.5f);
+
+        AttackSphere.GetComponent<EnemyAttackBall>().Attack = true;
+        GameObject Explosion = (GameObject)Instantiate(ColExp, AttackSphere.transform.position, AttackSphere.transform.rotation);
+        yield return new WaitForSeconds(0.5f);
+        GameObject.Destroy(Explosion);
+        AttackSphere.GetComponent<EnemyAttackBall>().Attack = false;
+
+
         
+        Anim.SetTrigger("Chasing");
+
+        Guard.isStopped = false;
+        CanAttack = true;
     }
 }

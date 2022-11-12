@@ -11,11 +11,8 @@ public class EyeMovement : MonoBehaviour
     public GameObject EyeSight;
 
     private Vector3 ChosenPoint;    //The position of the chosen point.
-    private Vector3 Return;
 
     public float MovementSpeed = 2f;
-
-    private Quaternion ControlRot;
     private Quaternion ReturnRot;
 
     private int PointIndex = 0;     //Checks which waypoint the script should reference
@@ -34,8 +31,6 @@ public class EyeMovement : MonoBehaviour
 
         Trig = EyeSight.GetComponent<EyeLogic>();
         PlayerMove = Player.GetComponent<Movement>();
-
-        Return = transform.rotation.eulerAngles;
 
         ReturnRot = transform.rotation;
         Debug.Log(ReturnRot);
