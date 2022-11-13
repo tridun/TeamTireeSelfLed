@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12436823, g: 0.076286785, b: 0.28216147, a: 1}
+  m_IndirectSpecularColor: {r: 0.12436844, g: 0.07628701, b: 0.28216228, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2262,6 +2262,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7197882882441975064, guid: e094ac16c727c22409778b9b85c6a97b, type: 3}
+      propertyPath: TaskForEnd
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7197882882441975064, guid: e094ac16c727c22409778b9b85c6a97b, type: 3}
+      propertyPath: Collectibles.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7197882882441975064, guid: e094ac16c727c22409778b9b85c6a97b, type: 3}
+      propertyPath: Collectibles.Array.data[0]
+      value: 
+      objectReference: {fileID: 1590487639}
+    - target: {fileID: 7197882882441975064, guid: e094ac16c727c22409778b9b85c6a97b, type: 3}
+      propertyPath: Collectibles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1155698321}
+    - target: {fileID: 7197882882441975064, guid: e094ac16c727c22409778b9b85c6a97b, type: 3}
+      propertyPath: Collectibles.Array.data[2]
+      value: 
+      objectReference: {fileID: 904135767}
     - target: {fileID: 7197882882441975065, guid: e094ac16c727c22409778b9b85c6a97b, type: 3}
       propertyPath: m_Name
       value: EndPoint
@@ -6108,6 +6128,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3905457947780318826, guid: 85fe0555c1abcf948af7ff221ea0d202, type: 3}
   m_PrefabInstance: {fileID: 1348234235}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &904135767 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2434063542510946565, guid: 311602f0334ca294da8d987535d5d903, type: 3}
+  m_PrefabInstance: {fileID: 1492988809}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &935113919
 GameObject:
   m_ObjectHideFlags: 0
@@ -7678,6 +7703,11 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!1 &1155698321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2434063542510946565, guid: 311602f0334ca294da8d987535d5d903, type: 3}
+  m_PrefabInstance: {fileID: 674157310}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1168933078
 GameObject:
   m_ObjectHideFlags: 0
@@ -10138,6 +10168,7 @@ GameObject:
   - component: {fileID: 1404941504}
   - component: {fileID: 1404941503}
   - component: {fileID: 1404941502}
+  - component: {fileID: 1404941505}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Wall
@@ -10222,6 +10253,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404941500}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1404941505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404941500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db19e6e69a3501047b14ee1922533b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Walls:
+  - {fileID: 637500433}
+  BaseMat: []
 --- !u!1 &1435927014
 GameObject:
   m_ObjectHideFlags: 0
@@ -11444,6 +11490,11 @@ MonoBehaviour:
   - {fileID: 1215146983}
   - {fileID: 664419573}
   BaseMat: []
+--- !u!1 &1590487639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2434063542510946565, guid: 311602f0334ca294da8d987535d5d903, type: 3}
+  m_PrefabInstance: {fileID: 383111478}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1600359509
 GameObject:
   m_ObjectHideFlags: 0
