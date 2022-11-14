@@ -62,13 +62,13 @@ public class EyeLogic : MonoBehaviour
             {
                 if (PlayerSeen == false)
                 {
-                    float Tri = Time.deltaTime * 3f;
+                    //float Tri = Time.deltaTime * 3f;
                     Detected.Play();
 
                     //EyeLight.color = Color.Lerp(Color.red, Color.white, Tri);
                 }
 
-
+                //Detected.Play();
 
                 PlayerSeen = true; //For Another Script's Logic. True if the player is in sight of the eye.
                 if (Firing == false)
