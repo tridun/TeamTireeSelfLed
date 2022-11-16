@@ -418,6 +418,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1795588568998254486, guid: b39e4538c8f58b347b62520be59347a5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 72.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410939431124078158, guid: b39e4538c8f58b347b62520be59347a5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 72.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8206353898292734657, guid: b39e4538c8f58b347b62520be59347a5, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -464,7 +472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8206353898292734667, guid: b39e4538c8f58b347b62520be59347a5, type: 3}
       propertyPath: m_Name
-      value: Gaurd
+      value: Guard
       objectReference: {fileID: 0}
     - target: {fileID: 8206353898292734668, guid: b39e4538c8f58b347b62520be59347a5, type: 3}
       propertyPath: PatrolPoints.Array.size

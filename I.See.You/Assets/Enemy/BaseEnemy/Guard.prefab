@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 8206353898292734668}
   - component: {fileID: 2957925297712191065}
   m_Layer: 2
-  m_Name: Gaurd
+  m_Name: Guard
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

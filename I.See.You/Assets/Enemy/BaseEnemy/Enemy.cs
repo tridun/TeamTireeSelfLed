@@ -231,7 +231,7 @@ public class Enemy : MonoBehaviour
         Form2.SetActive(true);
 
         Guard.isStopped = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f); //Time for Alert Animation
         Guard.isStopped = false;
         Anim.SetTrigger("Chasing");
         Hunt = true;
@@ -250,7 +250,7 @@ public class Enemy : MonoBehaviour
 
             print("calm");
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1f); //Time for Revert Animation.
             Guard.isStopped = false;
             if (PlayerSeen == false)
             {
@@ -294,11 +294,11 @@ public class Enemy : MonoBehaviour
         Anim.SetTrigger("Attack");
         Guard.isStopped = true;
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.5f); //TIme for Attack Animation
 
         AttackSphere.GetComponent<EnemyAttackBall>().Attack = true;
         GameObject Explosion = (GameObject)Instantiate(ColExp, AttackSphere.transform.position, AttackSphere.transform.rotation);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f); //Time The Attack has to damage player.
         GameObject.Destroy(Explosion);
         AttackSphere.GetComponent<EnemyAttackBall>().Attack = false;
 
