@@ -6,8 +6,10 @@ using TMPro;
 
 public class DiaLogBox : MonoBehaviour
 {
-    public GameObject X;
-    public GameObject Text;
+    private GameObject X;
+    private GameObject Text;
+
+    public bool ExitState = false;
 
     [TextArea (15, 20)]
     public string DialogueText;
@@ -24,15 +26,26 @@ public class DiaLogBox : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            Text.GetComponent<TextMeshProUGUI>().text = DialogueText;
-            Time.timeScale = 0f;
-            X.SetActive(true);
-            Destroy(gameObject);
+            if (ExitState == false)
+            {
+                Text.GetComponent<TextMeshProUGUI>().text = DialogueText;
+                Time.timeScale = 0f;
+                X.SetActive(true);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Text.GetComponent<TextMeshProUGUI>().text = DialogueText;
+                X.SetActive(true);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        
+        if (other.tag == "Player")
+        {
+                X.SetActive(false);
+        }
     }
 }
