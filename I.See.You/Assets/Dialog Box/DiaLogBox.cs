@@ -6,8 +6,9 @@ using TMPro;
 
 public class DiaLogBox : MonoBehaviour
 {
-    private GameObject X;
-    private GameObject Text;
+    public GameObject X;
+    public GameObject Text;
+    private GameObject Player;
 
     public bool ExitState = false;
 
@@ -16,8 +17,9 @@ public class DiaLogBox : MonoBehaviour
 
     void Start()
     {
-        X = GameObject.FindGameObjectWithTag("Dialogue");
-        Text = GameObject.FindGameObjectWithTag("DialogueText");
+        Player = GameObject.FindGameObjectWithTag("Player");
+        X = Player.GetComponent<Movement>().X;
+        Text = Player.GetComponent<Movement>().Text;
         X.SetActive(false);
     }
 

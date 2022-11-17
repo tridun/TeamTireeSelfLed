@@ -11,7 +11,7 @@ public class SecurityDoorScript : MonoBehaviour
     private float Control;
 
     //private bool KeyCollected = false;
-    private bool Range = false;
+    public bool Range = false;
 
 
     private void Start()

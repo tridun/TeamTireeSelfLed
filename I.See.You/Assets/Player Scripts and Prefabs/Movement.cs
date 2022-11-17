@@ -15,8 +15,8 @@ public class Movement : MonoBehaviour
     private GameObject[] Guard;     //Array for the guard assets
     private MeshRenderer Meshs;
 
-    private GameObject X;
-    private GameObject Text;
+    public GameObject X;
+    public GameObject Text;
 
     // Start is called before the first frame update
     void Start()
@@ -58,23 +58,23 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            foreach (var I in Guard)
-            {
-                Meshs = I.GetComponent<MeshRenderer>();
-                Meshs.material = EnemyChange[1];
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    foreach (var I in Guard)
+        //    {
+        //        Meshs = I.GetComponent<MeshRenderer>();
+        //        Meshs.material = EnemyChange[1];
+        //    }
+        //}
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            foreach (var I in Guard)
-            {
-                Meshs = I.GetComponent<MeshRenderer>();
-                Meshs.material = EnemyChange[0];
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    foreach (var I in Guard)
+        //    {
+        //        Meshs = I.GetComponent<MeshRenderer>();
+        //        Meshs.material = EnemyChange[0];
+        //    }
+        //}
 
 
 
